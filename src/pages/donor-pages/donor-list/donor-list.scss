@@ -1,0 +1,109 @@
+page-donor-list {
+  .content-ios {
+    .scroll-content {
+      margin-top: 118px !important;
+    }
+  }
+  .content-md {
+    .scroll-content {
+      margin-top: 96px !important;
+    }
+  }
+
+  .grid {
+    margin: 0;
+    padding: 0;
+    .row:first-child {
+      height: content-box;
+      .col {
+        .item-inner {
+          border-bottom: none;
+          align-items: center !important;
+          align-self: center !important;
+        }
+      }
+    }
+  }
+
+  .userBanner {
+    height: 45px;
+    background: linear-gradient(to bottom, color($colors, secondary-lighter) 60%, color($colors, gray)) !important;
+    .item {
+      background: transparent;
+      .label {
+        margin: 0;
+        font-size: .8em;
+      }
+      .select {
+        padding: 0;
+        width: 100%;
+        .select-button {
+          height: 40px;
+        }
+        .select-icon {
+          margin: 0 10px 0 0;
+        }
+        .select-text {
+          font-size: .9em;
+        }
+      }
+    }
+  }
+
+  .donor-list {
+    margin: 0;
+    height: 90px;
+    width: 100%;
+    color: color($colors, text-blue);
+    font-size: 18px;
+
+  }
+
+  .donor-list:nth-child(odd) {
+    background-color: color($colors, secondary-lighter);
+  }
+
+  .list-details {
+    min-width: 160px;
+    margin: 13px 0 13px 0;
+  }
+
+  .info {
+    color: color($colors, light-gray);
+    padding: 0;
+    margin: 2px;
+    font-size: 11px;
+  }
+
+  .response {
+    border-left: 2px solid #d4d9db;
+    height: 40px !important;
+    width: 100% !important;
+  }
+  .response-col {
+    margin: 0 !important;
+    height: 90px;
+    width: 100%;
+    align-items: center;
+    padding: 25px 0;
+  }
+
+  .colored-border {
+    width: 6px;
+    height: 80%;
+    margin: 8px 5px;
+    border-radius: 5px;
+  }
+  .avatar-col {
+    padding: 0;
+    margin: 15px 0 10px 0;
+    max-width: 70px;
+    align-items: center;
+    .avatar {
+      min-height: 50px !important;
+      min-width: 50px !important;
+      padding: 0;
+      margin: 5px 5px;
+    }
+  }
+}

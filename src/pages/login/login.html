@@ -1,0 +1,29 @@
+<ion-header>
+
+</ion-header>
+
+
+<ion-content class="loginhome" padding>
+
+  <div class="login-credentials">
+    <ion-card padding>
+      <ion-item>
+        <ion-input placeholder="Email" [(ngModel)]="user.email"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input type="password" placeholder="Password" [(ngModel)]="user.password"></ion-input>
+      </ion-item>
+      <button ion-button block (click)="login(user)" margin-top>Login</button>
+      <!--<ion-item class="checkbox">-->
+        <!--<ion-label>Remember me</ion-label>-->
+        <!--<ion-checkbox [(ngModel)]="remember"></ion-checkbox>-->
+      <!--</ion-item>-->
+      <div margin-top class="forgotPassUserDiv"> Forgot
+        <p></p>
+        <a margin-right> Username?</a> | <a margin-left>Password?</a>
+      </div>
+    </ion-card>
+  </div>
+
+
+</ion-content>

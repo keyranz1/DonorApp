@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 76.523">
+  <defs>
+    <style>
+      .cls-1, .cls-2 {
+        fill: #8b9189;
+      }
+
+      .cls-1 {
+        font-size: 18px;
+        font-family: SegoeUI-Bold, Segoe UI;
+        font-weight: 700;
+      }
+    </style>
+  </defs>
+  <g id="Group_1" data-name="Group 1" transform="translate(-269 -104.291)">
+    <text id="No_Response" data-name="No Response" class="cls-1" transform="translate(269 134.814)"><tspan x="35.388" y="19">No </tspan><tspan x="8.164" y="35">Response</tspan></text>
+    <g id="danger" transform="translate(304.281 104.291)">
+      <g id="Group_2" data-name="Group 2" transform="translate(0 0)">
+        <path id="Path_1" data-name="Path 1" class="cls-2" d="M24.78,60.633l-10.968-21.4a1.423,1.423,0,0,0-2.624,0L.22,60.633A2.079,2.079,0,0,0,.2,62.449a1.51,1.51,0,0,0,1.334.916H23.468a1.51,1.51,0,0,0,1.334-.916A2.079,2.079,0,0,0,24.78,60.633ZM12.508,45.766a1.108,1.108,0,0,1,1.163,1.159c0,2.261-.226,5.51-.226,7.771a.882.882,0,0,1-.937.836c-.517,0-.953-.247-.953-.836,0-2.261-.226-5.51-.226-7.771A1.1,1.1,0,0,1,12.508,45.766Zm.016,14a1.482,1.482,0,0,1,0-2.926,1.485,1.485,0,0,1,0,2.926Z" transform="translate(0 -38.365)"/>
+      </g>
+    </g>
+  </g>
+</svg>

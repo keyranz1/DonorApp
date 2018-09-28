@@ -1,0 +1,40 @@
+<ion-header>
+
+  <ion-navbar>
+    <button ion-button float-left menuToggle>
+      <ion-icon name="ios-menu"></ion-icon>
+    </button>
+    <ion-title>Settings</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content padding>
+  <ion-card>
+    <ion-card-header text-center>
+      Account Settings
+    </ion-card-header>
+    <ion-card-content>
+      <ion-item *ngIf="passwordResetSteps===0">
+        <a>Change Password</a>
+      </ion-item>
+      <ion-item>
+        <ion-label floating>Email</ion-label>
+        <ion-input></ion-input>
+      </ion-item>
+      <ion-item no-padding>
+        <button ion-button>Send Reset Code</button>
+      </ion-item>
+    </ion-card-content>
+  </ion-card>
+  <ion-card>
+    <ion-card-header text-center>Contact Us:</ion-card-header>
+    <ion-card-content>
+      <ion-label>
+        Have questions?
+      </ion-label>
+      <button ion-button outline block>Call</button>
+      <button ion-button block>Email</button>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

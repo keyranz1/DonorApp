@@ -1,0 +1,73 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>{{donor.name}}</ion-title>
+  </ion-navbar>
+
+</ion-header>
+<ion-content>
+
+  <ion-card margin-top>
+    <ion-card-header text-center> Donor Details</ion-card-header>
+    <ion-card-content>
+      <ion-item>
+        <ion-label>Name:</ion-label>
+        <ion-input [(ngModel)]="donor.name" placeholder="{{donor.name}}"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label>DOB:</ion-label>
+        <ion-datetime [(ngModel)]="donor.DOB" displayFormat="DD MM YYYY" pickerFormat="DD MM YYYY"></ion-datetime>
+      </ion-item>
+      <ion-item>
+        <ion-label>Gender:</ion-label>
+        <ion-select [(ngModel)]="donor.gender" interface="popover">
+          <ion-option value=0>Male</ion-option>
+          <ion-option value=1>Female</ion-option>
+          <ion-option value=2>Other</ion-option>
+        </ion-select>
+      </ion-item>
+      <ion-item>
+        <ion-label>Blood Group:</ion-label>
+        <ion-select [(ngModel)]="donor.bloodgrp">
+          <ion-option value=0>A Positive</ion-option>
+          <ion-option value=1>A Negative</ion-option>
+          <ion-option value=2>AB Positive</ion-option>
+          <ion-option value=3>AB Negative</ion-option>
+          <ion-option value=4>B Positive</ion-option>
+          <ion-option value=5>B Negative</ion-option>
+          <ion-option value=6>O Positive</ion-option>
+          <ion-option value=7>O Negative</ion-option>
+        </ion-select>
+      </ion-item>
+      <ion-item>
+        <ion-label> Address:</ion-label>
+        <ion-input [(ngModel)]="donor.address"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label>Phone Number:</ion-label>
+        <ion-input type="tel" [(ngModel)]="donor.phoneNumber"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label> Response:</ion-label>
+        <ion-select interface="popover" [(ngModel)]="donor.latestResponse">
+          <ion-option value=0> Ready</ion-option>
+          <ion-option value=1> Not Ready</ion-option>
+          <ion-option value=2> No Response</ion-option>
+        </ion-select>
+      </ion-item>
+      <ion-item>
+        <ion-label>Last Donation:</ion-label>
+        <ion-datetime [(ngModel)]="donor.latestDonation" displayFormat="DD MM YYYY"
+                      pickerFormat="DD MM YYYY"></ion-datetime>
+      </ion-item>
+    </ion-card-content>
+    <ion-item>
+      <button ion-button block default [disabled]="!isValid()" (click)="updateDonor()"> Update Donor</button>
+    </ion-item>
+    <div *ngIf="!isValid()">
+      <a margin-left color="danger">*Must fill Name, Phone number, and blood group.</a>
+    </div>
+  </ion-card>
+
+</ion-content>
+

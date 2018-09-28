@@ -1,0 +1,11 @@
+export enum BloodGroup {
+  Apositive,
+  Anegative,
+  ABpositive,
+  ABnegative,
+  Bpositive,
+  Bnegative,
+  Opositive,
+  Onegative,
+  Any
+}

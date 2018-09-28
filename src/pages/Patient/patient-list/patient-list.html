@@ -1,0 +1,83 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-searchbar *ngIf="searchParams.searchToggled" (ionChange)="searchOption($event)"></ion-searchbar>
+    <button ion-button float-left menuToggle>
+      <ion-icon name="ios-menu"></ion-icon>
+    </button>
+    <ion-title *ngIf="!searchParams.searchToggled">Patient List</ion-title>
+    <ion-buttons end>
+      <button ion-button (click)="searchParams.searchToggled = !searchParams.searchToggled">
+        <ion-icon name="search" *ngIf="!searchParams.searchToggled"></ion-icon>
+        <ion-icon name="close" *ngIf="searchParams.searchToggled"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content no-padding>
+
+  <div ion-fixed>
+    <ion-grid no-padding>
+      <ion-row text-center class="userBanner" ion-fixed>
+        <ion-col col-7>
+          <ion-label><b>Branch:</b> Morang</ion-label>
+        </ion-col>
+        <ion-col col-5>
+          <ion-label><b>Sort by:</b></ion-label>
+          <ion-select interface="popover" float-right>
+            <ion-option [selected]="true">Name</ion-option>
+            <ion-option>Priority</ion-option>
+          </ion-select>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+
+  <ion-grid no-padding>
+    <div *ngIf="!searchParams.searchPatientList.length>0">
+      <ion-row *ngFor="let patient of patientList" detail-push navPush="PatientInfoPage"
+               [navParams]="{patient: patient}" class="patient-list">
+        <div class="colored-border" [patient-priority]="patient.priority"></div>
+        <ion-col class="avatar-col">
+          <ion-icon class="avatar" [name]="patient.gender | genderDecider"></ion-icon>
+        </ion-col>
+        <ion-col class="list-details">
+          <div>
+            <ion-label no-margin>{{patient.name}}</ion-label>
+            <p class="info" *ngIf="patient.pints"> Pints Required: {{patient.pints}}</p>
+            <p class="info"> {{patient.bloodgrp | bloodType}}</p>
+          </div>
+        </ion-col>
+        <ion-col>
+          <ion-icon class="priority-icon" [name]="patient.priority | patientPriority"></ion-icon>
+        </ion-col>
+      </ion-row>
+    </div>
+
+    <div *ngIf="searchParams.searchPatientList.length>0">
+      <ion-row *ngFor="let patient of searchParams.searchPatientList" detail-push navPush="PatientInfoPage"
+               [navParams]="{patient: patient}" class="patient-list">
+        <div class="colored-border" [patient-priority]="patient.priority"></div>
+        <ion-col class="avatar-col">
+          <ion-icon class="avatar" [name]="patient.gender | genderDecider"></ion-icon>
+        </ion-col>
+        <ion-col class="list-details">
+          <div>
+            <ion-label no-margin>{{patient.name}}</ion-label>
+            <p class="info"> Pints Required: {{patient.pints}}</p>
+            <p class="info">{{patient.bloodgrp | bloodType}}</p>
+          </div>
+        </ion-col>
+        <ion-col>
+          <ion-icon class="priority-icon" [name]="patient.priority | patientPriority"></ion-icon>
+        </ion-col>
+      </ion-row>
+    </div>
+  </ion-grid>
+
+    <button class="draggable-fab" ion-fixed draggable ion-fab navPush="AddPatientPage">
+      <ion-icon name="add"></ion-icon>
+    </button>
+
+</ion-content>

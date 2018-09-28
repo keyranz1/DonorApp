@@ -1,0 +1,33 @@
+page-login {
+  .loginhome{
+    //background: url("https://lh3.googleusercontent.com/-sK6mg66Un1Q/AAAAAAAAAAI/AAAAAAAAAWQ/RfNd70tZBYs/il/photo.jpg") no-repeat center ;
+    background-size: cover;
+  }
+  .content {
+    position: relative;
+    align-items: center;
+    .scroll-content {
+      overflow-y: hidden;
+    }
+  }
+
+  .login-credentials {
+    width: 90%;
+    position: relative;
+    padding: 0;
+    .card {
+      height: 30%;
+
+    }
+    margin: 70% auto !important;
+  }
+  .checkbox {
+    font-size: 12px;
+    color: color($colors, secondary);
+    $checkbox-ios-icon-size: 11px;
+  }
+
+  .forgotPassUserDiv{
+    text-align: center;
+  }
+}

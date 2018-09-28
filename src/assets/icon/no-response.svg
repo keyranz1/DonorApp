@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 38">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: rgba(146,154,144,0.81);
+        font-size: 18px;
+        font-family: SegoeUI-Bold, Segoe UI;
+        font-weight: 700;
+      }
+    </style>
+  </defs>
+  <g id="no-response" transform="translate(-290 -119)">
+    <text id="No_Response" data-name="No Response" class="cls-1" transform="translate(290 119)"><tspan x="27.388" y="19">No </tspan><tspan x="0.164" y="32">Response</tspan></text>
+  </g>
+</svg>

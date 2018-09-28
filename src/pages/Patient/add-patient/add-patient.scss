@@ -1,0 +1,17 @@
+page-add-patient {
+
+  .scroll-content{
+    padding-bottom: 0 !important;
+  }
+  .card-header {
+    background-color: #cbcbcb;
+    color: color($colors, light);
+  }
+  .content{
+    .ion-item.item:hover{
+      .button:hover{
+        background-color: color($colors, secondary) ;
+      }
+    }
+  }
+}

@@ -1,0 +1,58 @@
+page-patient-info {
+
+  .row {
+    align-items: center;
+    .label {
+      margin: 0;
+    }
+    .col:nth-child(2) {
+      .icon {
+        margin: 0 6% 0 6%;
+      }
+    }
+    .col:nth-child(3) {
+      .icon {
+        float: right;
+      }
+    }
+    .sub-label {
+      width: 100%;
+      text-align: center;
+      color: color($colors, light-gray);
+      font-weight: bold;
+    }
+
+    .donor-name {
+      text-align: center;
+      width: 100%;
+      color: color($colors, text-blue)
+    }
+  }
+  .avatar {
+    height: 95px;
+    width: 95px;
+  }
+
+  .contact-button {
+    height: 55px;
+    width: 55px;
+  }
+  .card {
+    .card-header {
+      background: color($colors, gray);
+      font-weight: bold;
+      color: color($colors, light);
+    }
+    .card-content {
+      padding: 5px;
+      .item {
+        p {
+          line-height: 120%;
+          overflow: visible;
+          white-space: normal;
+        }
+      }
+    }
+  }
+
+}

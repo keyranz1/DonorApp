@@ -1,0 +1,80 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>{{patient.name}}</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <ion-icon class="contact-button" name="app-call" (click)="callPatient()"></ion-icon>
+      </ion-col>
+      <ion-col>
+        <ion-icon class="avatar" [name]="patient.gender | genderDecider"></ion-icon>
+      </ion-col>
+      <ion-col>
+        <ion-icon class="contact-button" name="app-message" (click)="smsPatient()"></ion-icon>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+
+      <h2 class="donor-name"> {{patient.name}}</h2>
+      <div class="sub-label">
+        <ion-label>Blood type: {{patient.bloodgrp | bloodType}}</ion-label>
+      </div>
+
+    </ion-row>
+  </ion-grid>
+
+  <ion-card>
+    <ion-card-header text-center>
+      PATIENT INFO:
+    </ion-card-header>
+    <ion-card-content>
+
+      <ion-item *ngIf="patient.pints">
+        <h4>No. of Pints required: </h4>
+        <p>{{patient.pints}}</p>
+      </ion-item>
+      <ion-item>
+        <h4>Address: </h4>
+        <p>{{patient.address.toUpperCase()}}</p>
+      </ion-item>
+      <ion-item>
+        <h4>Age:</h4>
+        <p>{{patient.age}}</p>
+      </ion-item>
+      <ion-item>
+        <h4>Phone Number: </h4>
+        <p>{{patient.phoneNumber}}</p>
+      </ion-item>
+      <ion-item>
+        <h4>Admitted At: </h4>
+        <p>{{patient.admittedAt}}</p>
+      </ion-item>
+      <ion-item *ngIf="(patient.note.length>0)">
+        <h4>Note: </h4>
+        <p>{{patient.note}}</p>
+      </ion-item>
+    </ion-card-content>
+  </ion-card>
+
+
+    <button ion-fab draggable>
+      <ion-icon name="ios-arrow-back"></ion-icon>
+    </button>
+    <ion-fab-list side="left">
+      <button ion-fab (click)="removePatient(patient)">
+        <ion-icon name="md-trash"></ion-icon>
+      </button>
+      <button ion-fab navPush="EditPatientPage" [navParams]="{patient:patient}">
+        <ion-icon name="md-create"></ion-icon>
+      </button>
+    </ion-fab-list>
+
+</ion-content>

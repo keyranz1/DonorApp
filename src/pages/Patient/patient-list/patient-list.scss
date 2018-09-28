@@ -1,0 +1,97 @@
+patient-list {
+  .content-ios {
+    .scroll-content {
+      margin-top: 118px !important;
+    }
+  }
+  .content-md {
+    .scroll-content {
+      margin-top: 96px !important;
+    }
+  }
+  .fab-container{;
+    margin: 0;
+    height: 40px !important;
+    width: 40px !important;
+    .button-inner{
+      height: 20px;
+    }
+  }
+  .navbar {
+    .icon {
+      color: white !important;
+    }
+  }
+  .userBanner {
+    padding: 0 8px;
+    background: linear-gradient(to bottom, color($colors, secondary-lighter) 60%, color($colors, gray)) !important;
+    width: 100%;
+    text-align: center;
+    box-shadow: 0 2px 15px color($colors, secondary);
+    .select {
+      padding: 12px 0;
+      .select-icon {
+        margin: 0 10px 0 0;
+      }
+    }
+    .label {
+      float: left;
+      b {
+        color: color($colors, text-blue);
+      }
+      word-spacing: 2px;
+      padding: 0;
+      color: color($colors, text-blue)
+    }
+  }
+
+  .patient-list {
+    padding: 0;
+    height: 90px;
+    width: 100%;
+    color: color($colors, dark);
+    font-size: 18px;
+
+    .priority-icon {
+      border-left: 2px solid #d4d9db;
+      margin: 17px 0 17px 15px;
+      height: 40px !important;
+      width: 100% !important;
+    }
+    .colored-border {
+      width: 6px;
+      height: 80%;
+      margin: 8px 5px;
+      border-radius: 5px;
+    }
+  }
+  .patient-list:nth-child(odd) {
+    background-color: color($colors, secondary-lighter);
+  }
+
+  .list-details {
+    margin: 15px 0 0 0;
+      .label{
+        color: color($colors, text-blue);
+    }
+  }
+  .info {
+    color: color($colors, light-gray);
+    padding: 0;
+    margin: 2px;
+    font-size: 12px;
+  }
+
+  .avatar-col {
+    padding: 0;
+    margin: 15px 0 10px 0;
+    max-width: 70px;
+    align-items: center;
+    .avatar {
+      min-height: 50px !important;
+      min-width: 50px !important;
+      padding: 0;
+      margin: 5px 5px;
+    }
+  }
+}

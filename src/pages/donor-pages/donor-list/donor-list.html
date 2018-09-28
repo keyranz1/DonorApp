@@ -1,0 +1,98 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-searchbar *ngIf="searchParams.searchToggled" (ionChange)="searchOption($event)"
+                   debounce="500"></ion-searchbar>
+    <button ion-button float-left menuToggle>
+      <ion-icon name="ios-menu"></ion-icon>
+    </button>
+    <ion-title *ngIf="!searchParams.searchToggled">Donors</ion-title>
+    <ion-buttons end>
+      <button ion-button (click)="searchParams.searchToggled = !searchParams.searchToggled">
+        <ion-icon name="search" *ngIf="!searchParams.searchToggled"></ion-icon>
+        <ion-icon name="close" *ngIf="searchParams.searchToggled"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content no-padding>
+  <div ion-fixed>
+    <ion-grid class="userBanner">
+      <ion-row text-center>
+        <ion-col ion-item>
+          <ion-label>
+            Blood Type:
+          </ion-label>
+          <ion-select interface="popover" (ionChange)="showByBloodType($event)">
+            <ion-option value=8 [selected]="true">Any</ion-option>
+            <ion-option value=0>A Positive</ion-option>
+            <ion-option value=1>A Negative</ion-option>
+            <ion-option value=2>AB Positive</ion-option>
+            <ion-option value=3>AB Negative</ion-option>
+            <ion-option value=4>B Positive</ion-option>
+            <ion-option value=5>B Negative</ion-option>
+            <ion-option value=6>O Positive</ion-option>
+            <ion-option value=7>O Negative</ion-option>
+          </ion-select>
+        </ion-col>
+
+        <ion-col ion-item>
+          <ion-label>Sort by:</ion-label>
+          <ion-select interface="popover" (ionChange)="sort($event)" placeholder="None">
+            <ion-option value="name">Name</ion-option>
+            <ion-option value="lastDonation">Last Donation</ion-option>
+          </ion-select>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+
+  <ion-grid>
+    <ng-container *ngIf="!searchParams.searchDonorList.length>0">
+      <ion-row class="donor-list" *ngFor="let donor of donorList " navPush="DonorInfoPage"
+               [navParams]="{donor: donor}">
+        <div class="colored-border" [donor-response]="donor.latestResponse"></div>
+        <ion-col class="avatar-col">
+          <ion-icon class="avatar" [name]="donor.gender | genderDecider"></ion-icon>
+        </ion-col>
+        <ion-col class="list-details">
+          <div>
+            <ion-label no-margin>{{donor.name}}</ion-label>
+            <p class="info">Last Donation: {{donor.latestDonation | dateFormatter}}</p>
+            <p class="info">{{donor.bloodgrp | bloodType}}</p>
+          </div>
+        </ion-col>
+        <ion-col margin-top class="response-col">
+          <ion-icon class="response" [name]="donor.latestResponse | donorResponse "></ion-icon>
+        </ion-col>
+      </ion-row>
+    </ng-container>
+
+    <ng-container *ngIf="searchParams.searchDonorList.length>0">
+      <ion-row class="donor-list" *ngFor="let donor of searchParams.searchDonorList " navPush="DonorInfoPage"
+               [navParams]="{donor: donor}">
+        <div class="colored-border" [donor-response]="donor.latestResponse"></div>
+        <ion-col class="avatar-col">
+          <ion-icon class="avatar" [name]="donor.gender | genderDecider"></ion-icon>
+        </ion-col>
+        <ion-col class="list-details">
+          <div>
+            <ion-label no-margin>{{donor.name}}</ion-label>
+            <p class="info">Last Donation: {{donor.latestDonation | dateFormatter}}</p>
+            <p class="info">{{donor.bloodgrp | bloodType}}</p>
+          </div>
+        </ion-col>
+        <ion-col margin-top class="response-col">
+          <ion-icon class="response" [name]="donor.latestResponse | donorResponse "></ion-icon>
+        </ion-col>
+
+      </ion-row>
+    </ng-container>
+  </ion-grid>
+
+    <button class="draggable-fab" ion-fixed draggable ion-fab navPush="AddDonorPage">
+      <ion-icon name="ios-add"></ion-icon>
+    </button>
+</ion-content>
+

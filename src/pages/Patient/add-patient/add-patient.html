@@ -1,0 +1,79 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Add Patient</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <ion-card-header text-center>
+      Patient Info:
+    </ion-card-header>
+    <ion-card-content no-padding>
+      <ion-item>
+        <ion-label>Name:</ion-label>
+        <ion-input type="text" [(ngModel)]="patient.name"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label>Admitted At:</ion-label>
+        <ion-input [(ngModel)]="patient.admittedAt" placeholder="(Hospital)"></ion-input>
+      </ion-item>
+      <ion-item col-9>
+        <ion-label>Age:</ion-label>
+        <ion-input type="number" [(ngModel)]="patient.age"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label>Gender:</ion-label>
+        <ion-select [(ngModel)]="patient.gender" interface="popover">
+          <ion-option value=0>Male</ion-option>
+          <ion-option value=1>Female</ion-option>
+          <ion-option value=2>Other</ion-option>
+        </ion-select>
+      </ion-item>
+      <ion-item>
+        <ion-label>Blood Group:</ion-label>
+        <ion-select [(ngModel)]="patient.bloodgrp">
+          <ion-option value=0>A Positive</ion-option>
+          <ion-option value=1>A Negative</ion-option>
+          <ion-option value=2>AB Positive</ion-option>
+          <ion-option value=3>AB Negative</ion-option>
+          <ion-option value=4>B Positive</ion-option>
+          <ion-option value=5>B Negative</ion-option>
+          <ion-option value=6>O Positive</ion-option>
+          <ion-option value=7>O Negative</ion-option>
+        </ion-select>
+      </ion-item>
+      <ion-item>
+        <ion-label>Number of Pints required:</ion-label>
+        <ion-input type="number" [(ngModel)]="patient.pints"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label> Address:</ion-label>
+        <ion-input [(ngModel)]="patient.address"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label>Phone Number:</ion-label>
+        <ion-input type="tel" [(ngModel)]="patient.phoneNumber"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label> Priority:</ion-label>
+        <ion-select interface="popover" [(ngModel)]="patient.priority">
+          <ion-option value=0> Urgent</ion-option>
+          <ion-option value=1> Regular</ion-option>
+          <ion-option value=2> Backup</ion-option>
+        </ion-select>
+      </ion-item>
+      <ion-item>
+        <ion-label>Note:</ion-label>
+        <ion-input placeholder="(Optional)" [(ngModel)]="patient.note"></ion-input>
+      </ion-item>
+    </ion-card-content>
+    <ion-item>
+      <button ion-button block default [disabled]="!isValidInput()" (click)="onAdd()"> Add</button>
+    </ion-item>
+    <div *ngIf="!isValidInput()">
+      <a margin left color="danger">*Must fill name, hospital and blood group.</a>
+    </div>
+
+  </ion-card>
+</ion-content>

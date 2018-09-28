@@ -1,0 +1,20 @@
+<ion-menu [content]="navigation" swipeEnabled="false">
+  <ion-header>
+    <ion-toolbar>
+      <ion-title>
+        Menu
+      </ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content>
+    <ion-list no-margin>
+      <ion-item menuClose ion-item *ngFor="let currentPage of menuPages" (click)="currentPage.action()" tappable>
+        <ion-icon class="icon" item-start [name]="currentPage.icon"></ion-icon>
+        {{currentPage.title}}
+      </ion-item>
+    </ion-list>
+  </ion-content>
+  <ion-footer padding>
+    <p>TEST TEST</p>
+  </ion-footer>
+</ion-menu>

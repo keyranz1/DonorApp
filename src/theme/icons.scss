@@ -1,0 +1,51 @@
+ion-icon {
+  &[class*="app-"] {
+    background-size: contain;
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    width: 22px;
+    height: 22px;
+  }
+  &[class*="app-girl"] {
+    background-image: url(../assets/icon/girl.svg);
+  }
+  &[class*="app-man"] {
+    background-image: url(../assets/icon/man.svg);
+  }
+  &[class*="app-other"] {
+    background-image: url(../assets/icon/unknown_profile.svg);
+  }
+  &[class*="app-call"] {
+    background-image: url(../assets/icon/call.svg)
+  }
+  &[class*="app-message"] {
+    background-image: url(../assets/icon/message.svg);
+  }
+  &[class*="app-ready"] {
+    background-image: url(../assets/icon/ready.svg);
+  }
+  &[class*="app-not"] {
+    background-image: url(../assets/icon/not-ready.svg);
+  }
+  &[class*="app-noresponse"] {
+    background-image: url(../assets/icon/no-response.svg);
+  }
+  &[class*="app-add"] {
+    background-image: url(../assets/icon/add.svg);
+  }
+  &[class*="app-patient-list"] {
+    background-image: url(../assets/icon/patient-list.svg);
+  }
+  &[class*="app-donor-list"] {
+    background-image: url(../assets/icon/donor-list.svg);
+  }
+  &[class*="app-urgent"]{
+    background-image: url(../assets/icon/urgent.svg);
+  }
+  &[class*="app-backup"]{
+    background-image: url(../assets/icon/backup.svg);
+  }
+  &[class*="app-regular"]{
+    background-image: url(../assets/icon/regular.svg);
+  }
+}
