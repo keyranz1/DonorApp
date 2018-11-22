@@ -3,6 +3,7 @@ import { IonicPage, LoadingController, NavController, NavParams } from 'ionic-an
 import { Patient } from "../../../types/patient";
 import { FirebaseServiceProvider } from "../../../providers/service/firebase-service-provider";
 import { SessionManager } from "../../../providers/service/session-manager";
+import {Sorter} from "../../../utilities/sorter";
 
 @IonicPage()
 @Component({
@@ -52,7 +53,7 @@ export class PatientListPage implements OnInit {
 
   ionViewWillLoad() {
     if (this.sessionManager.getCurrentUser() === undefined) {
-      this.navCtrl.setRoot("LoginPage");
+      this.navCtrl.setRoot("AdminLoginPage");
     }
   }
 
@@ -61,5 +62,16 @@ export class PatientListPage implements OnInit {
       return patient.name.toLowerCase().includes(event.value.toLowerCase());
     });
     console.log(this.searchParams.searchPatientList);
+  }
+
+  sort(event: any) {
+    switch (event.toString()) {
+      case "name":
+        this.patientList = Sorter.sortByName(this.patientList);
+        break;
+      case "priority":
+        this.patientList = Sorter.sortByPriority(this.patientList);
+        break;
+    }
   }
 }

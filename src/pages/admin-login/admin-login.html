@@ -1,11 +1,17 @@
 <ion-header>
-
+ <ion-navbar>
+   <ion-title>
+     Admin Login
+   </ion-title>
+ </ion-navbar>
 </ion-header>
 
 
 <ion-content class="loginhome" padding>
-
   <div class="login-credentials">
+    <div text-center class="logoImg">
+    <ion-img width="200" height="200" src="https://lh3.googleusercontent.com/-sK6mg66Un1Q/AAAAAAAAAAI/AAAAAAAAAWQ/RfNd70tZBYs/il/photo.jpg" (click)="tapped()"></ion-img>
+    </div>
     <ion-card padding>
       <ion-item>
         <ion-input placeholder="Email" [(ngModel)]="user.email"></ion-input>
@@ -18,9 +24,7 @@
         <!--<ion-label>Remember me</ion-label>-->
         <!--<ion-checkbox [(ngModel)]="remember"></ion-checkbox>-->
       <!--</ion-item>-->
-      <div margin-top class="forgotPassUserDiv"> Forgot
-        <p></p>
-        <a margin-right> Username?</a> | <a margin-left>Password?</a>
+      <div margin-top class="forgotPassUserDiv"><a navPush="ForgotPasswordPage"> Forgot Password?</a>
       </div>
     </ion-card>
   </div>

@@ -4,7 +4,7 @@ import { User } from "../../types/user";
 @Injectable()
 export class SessionManager implements OnDestroy{
 
-  private currentUser: User;
+  currentUser: User;
   constructor(){
   }
 

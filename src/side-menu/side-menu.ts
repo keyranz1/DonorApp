@@ -58,7 +58,7 @@ export class SideMenuComponent {
 
     loader.present()
       .then(() => this.afAuth.auth.signOut())
-      .then(() => this.navigation.setRoot('LoginPage'))
+      .then(() => this.navigation.setRoot('AdminLoginPage'))
       .then(() => this.sessionManager.setCurrentUser(undefined))
       .then(() => loader.dismiss())
       .catch(() => {
@@ -69,7 +69,7 @@ export class SideMenuComponent {
   changePage(page: string) {
      this.navigation.setRoot(page)
       .catch(() => {
-        return this.navigation.setRoot('LoginPage');
+        return this.navigation.setRoot('AdminLoginPage');
       })
   }
 }

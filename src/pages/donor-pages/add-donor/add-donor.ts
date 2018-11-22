@@ -27,9 +27,7 @@ export class AddDonorPage {
               private toastCtrl: ToastController, private sessionManager: SessionManager) {}
 
   ionViewDidLoad() {
-    if (this.sessionManager.getCurrentUser() === undefined) {
-      this.navCtrl.setRoot("LoginPage");
-    }
+
   }
 
   onAdd() {
@@ -38,7 +36,7 @@ export class AddDonorPage {
     });
     this.listService.addDonor(this.donor)
       .then(() => {
-        this.navCtrl.setRoot('DonorListPage')
+        this.navCtrl.setRoot('DonorInfoPage', this.donor)
           .then(() => {
             toaster.setCssClass("success-toaster");
             toaster.setMessage("Donor successfully added to the Donor list");

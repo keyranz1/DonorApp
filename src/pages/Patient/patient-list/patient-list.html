@@ -25,9 +25,9 @@
         </ion-col>
         <ion-col col-5>
           <ion-label><b>Sort by:</b></ion-label>
-          <ion-select interface="popover" float-right>
-            <ion-option [selected]="true">Name</ion-option>
-            <ion-option>Priority</ion-option>
+          <ion-select interface="popover" float-right (ionChange)="sort($event)">
+            <ion-option value="name" [selected]="true">Name</ion-option>
+            <ion-option value="priority">Priority</ion-option>
           </ion-select>
         </ion-col>
       </ion-row>

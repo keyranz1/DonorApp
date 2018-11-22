@@ -6,11 +6,11 @@ import { SessionManager } from "../../providers/service/session-manager";
 
 @IonicPage()
 @Component({
-  selector: 'page-login',
-  templateUrl: 'login.html',
+  selector: 'page-admin-login',
+  templateUrl: 'admin-login.html',
 })
-export class LoginPage {
-
+export class AdminLoginPage {
+  tap = 0;
   user = {
     email: "kiran.yadubanshi@selu.edu",
     password: "loveuuz",
@@ -35,12 +35,12 @@ export class LoginPage {
       buttons: ["Ok"]
     });
 
-    console.log(this.afAuth.auth.currentUser);
+    // console.log(this.afAuth.auth.currentUser);
     return loader.present()
       .then(() => this.afAuth.auth.signInWithEmailAndPassword(user.email, user.password))
       .then(() => {
         this.sessionManager.setCurrentUser(this.user);
-        console.log(this.afAuth.auth.currentUser);
+        // console.log(this.afAuth.auth.currentUser);
         return this.navCtrl.setRoot("PatientListPage")
       })
       .then(() => loader.dismiss())
@@ -55,8 +55,16 @@ export class LoginPage {
       });
   }
 
-  passwordReset(){
+  tapped(){
+    this.tap ++;
+    if(this.tap == 5){
+       this.alertCtrl.create({
+        message: "You are already in Admin admin-login page",
+        buttons: ["Ok"]
+      }).present();
 
+    }
   }
+
 
 }

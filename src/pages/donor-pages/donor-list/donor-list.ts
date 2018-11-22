@@ -57,7 +57,7 @@ export class DonorListPage implements OnInit {
 
   ionViewWillLoad() {
     if (!this.sessionManager.getCurrentUser()) {
-      this.navCtrl.setRoot("LoginPage");
+      this.navCtrl.setRoot("AdminLoginPage");
     }
   }
 

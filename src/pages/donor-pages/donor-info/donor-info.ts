@@ -12,6 +12,8 @@ import { FirebaseServiceProvider } from "../../../providers/service/firebase-ser
 import { Donor } from "../../../types/donor";
 import { CallNumber } from "@ionic-native/call-number";
 import { SMS } from "@ionic-native/sms";
+import {User} from "../../../types/user";
+import {AngularFireAuth} from "angularfire2/auth";
 
 @IonicPage()
 @Component({
@@ -31,18 +33,41 @@ export class DonorInfoPage {
     phoneNumber: '',
     note: '',
   };
+  currentUser: any;
+
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private sessionManager: SessionManager,
               private firebaseService: FirebaseServiceProvider, private callNumber: CallNumber, private messageDonor: SMS,
-              private alertCtrl: AlertController, private toastCtrl: ToastController, private loadCtrl: LoadingController) {
-    this.donor = this.navParams.get('donor');
+              private alertCtrl: AlertController, private toastCtrl: ToastController, private loadCtrl: LoadingController,
+              private fauth: AngularFireAuth) {
+    console.log();
+
   }
 
   ionViewWillLoad() {
+    this.firebaseService
+      .getDonorList() // Gives DB LIst
+      .snapshotChanges() // Gives Key and Value
+      .map(
+        changes => {
+          return changes.map(c => ({ // return object for each changes
+            key: c.payload.key, ...c.payload.val()
+          }));
+        }).subscribe((data) => {
+      data.map(array => {
+        console.log(array.key);
+        console.log();
+        if(array.key == this.fauth.auth.currentUser){
+          this.donor = array;
+        }
+      });
+    });
     console.log(this.donor);
     if (this.sessionManager.getCurrentUser() === undefined) {
-      this.navCtrl.setRoot("LoginPage");
+      this.navCtrl.setRoot("UserLoginPage");
     }
+
+
 
   }
 

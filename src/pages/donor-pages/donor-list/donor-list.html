@@ -40,7 +40,7 @@
         <ion-col ion-item>
           <ion-label>Sort by:</ion-label>
           <ion-select interface="popover" (ionChange)="sort($event)" placeholder="None">
-            <ion-option value="name">Name</ion-option>
+            <ion-option value="name" [selected]="true">Name</ion-option>
             <ion-option value="lastDonation">Last Donation</ion-option>
           </ion-select>
         </ion-col>

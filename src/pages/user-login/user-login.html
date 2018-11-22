@@ -1,0 +1,36 @@
+<!--
+  Generated template for the HomePage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+
+</ion-header>
+
+
+<ion-content padding class="homePage">
+<div class="homeCard">
+  <div text-center class="logoImg" >
+    <ion-img (click)="tapped()" width="200" height="200" src="https://lh3.googleusercontent.com/-sK6mg66Un1Q/AAAAAAAAAAI/AAAAAAAAAWQ/RfNd70tZBYs/il/photo.jpg" ></ion-img>
+  </div>
+  <ion-card padding>
+    <form>
+      <ion-item>
+        <ion-label floating>Email</ion-label>
+        <ion-input name="email" type="email" [(ngModel)]="user.email"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label floating>Password</ion-label>
+        <ion-input name="password" type="password" [(ngModel)]="user.password"></ion-input>
+      </ion-item>
+      <button ion-button block color="primary" (click)="login()">Login</button>
+      <button ion-button  clear full color="secondary" navPush="RegisterPage">Register</button>
+      <div margin-top class="forgotPassUserDiv"><a navPush="ForgotPasswordPage">Forgot Password?</a></div>
+    </form>
+  </ion-card>
+</div>
+
+</ion-content>

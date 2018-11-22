@@ -30,7 +30,7 @@ export class AddPatientPage {
 
   ionViewDidLoad() {
     if (this.sessionManager.getCurrentUser() === undefined) {
-      this.navCtrl.setRoot("LoginPage");
+      this.navCtrl.setRoot("AdminLoginPage");
     }
   }
 

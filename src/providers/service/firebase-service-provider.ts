@@ -3,6 +3,7 @@ import { Donor } from "../../types/donor";
 import { Patient } from "../../types/patient";
 import { AngularFireDatabase } from "angularfire2/database";
 import { Firebase } from '@ionic-native/firebase';
+import {User} from "../../types/user";
 
 @Injectable()
 export class FirebaseServiceProvider {

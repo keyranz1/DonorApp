@@ -1,4 +1,4 @@
-page-login {
+page-admin-login {
   .loginhome{
     //background: url("https://lh3.googleusercontent.com/-sK6mg66Un1Q/AAAAAAAAAAI/AAAAAAAAAWQ/RfNd70tZBYs/il/photo.jpg") no-repeat center ;
     background-size: cover;
@@ -19,7 +19,11 @@ page-login {
       height: 30%;
 
     }
-    margin: 70% auto !important;
+    .logoImg{
+      margin-top: -10%;
+      margin-bottom: 10%;
+    }
+    margin: 30% auto !important;
   }
   .checkbox {
     font-size: 12px;
@@ -29,5 +33,9 @@ page-login {
 
   .forgotPassUserDiv{
     text-align: center;
+    a{
+      text-decoration: none;
+    }
   }
+
 }
