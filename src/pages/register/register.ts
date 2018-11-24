@@ -41,8 +41,14 @@ export class RegisterPage {
     });
 
         this.db.auth.createUserWithEmailAndPassword(this.email,this.password)
-          .then(()=>{
-            this.navCtrl.setRoot('AddDonorPage');
+          .then((userData)=>{
+            console.log(userData.uid);
+             this.db.auth.signInWithEmailAndPassword(this.email,this.password)
+               .then((result)=>{
+                 console.log(result.uid);
+                this.navCtrl.setRoot('AddDonorPage');
+              })
+
           })
           .catch((error)=>{
             toaster.setMessage(error);

@@ -35,7 +35,7 @@ export class EditDonorPage {
 
     loader.present()
       .then(()=>this.firebaseService.updateDonorDetails(this.donor))
-      .then(() => this.navCtrl.setRoot("DonorListPage"))
+      .then(() => this.navCtrl.setRoot("DonorInfoPage"))
       .then(()=>loader.dismiss())
       .then(()=>{
         toaster.setMessage("Updated Donor Info.");

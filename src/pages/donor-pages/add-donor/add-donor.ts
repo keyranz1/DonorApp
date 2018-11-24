@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angu
 import { Donor } from "../../../types/donor";
 import { FirebaseServiceProvider } from "../../../providers/service/firebase-service-provider";
 import { SessionManager } from "../../../providers/service/session-manager";
+import {AngularFireAuth} from "angularfire2/auth";
 
 @IonicPage()
 @Component({
@@ -10,6 +11,9 @@ import { SessionManager } from "../../../providers/service/session-manager";
   templateUrl: 'add-donor.html',
 })
 export class AddDonorPage {
+
+  user = this.db.auth.currentUser.uid;
+
 
   donor: Donor = {
     name: '',
@@ -21,20 +25,21 @@ export class AddDonorPage {
     address: '',
     phoneNumber: '',
     note: '',
+    key: this.user
   };
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private listService: FirebaseServiceProvider,
-              private toastCtrl: ToastController, private sessionManager: SessionManager) {}
+              private toastCtrl: ToastController, private sessionManager: SessionManager, private db: AngularFireAuth) {}
 
   ionViewDidLoad() {
-
+    console.log("After Loading:" + this.user);
   }
 
   onAdd() {
     let toaster = this.toastCtrl.create({
       duration: 3000,
     });
-    this.listService.addDonor(this.donor)
+    this.listService.addDonor(this.donor, this.user)
       .then(() => {
         this.navCtrl.setRoot('DonorInfoPage', this.donor)
           .then(() => {

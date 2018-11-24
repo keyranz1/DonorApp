@@ -44,6 +44,7 @@ export class PatientListPage implements OnInit {
             })
           .subscribe((data) => {
             this.patientList = data.map(array => {
+              console.log(array);
               return array;
             });
           return loader.dismiss();

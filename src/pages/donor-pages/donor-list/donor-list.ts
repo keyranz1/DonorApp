@@ -35,7 +35,7 @@ export class DonorListPage implements OnInit {
     loader.present()
       .then(()=>{
         this.listService
-          .getDonorList() // Gives DB LIst
+          .getAdminDonorList() // Gives DB LIst
           .snapshotChanges() // Gives Key and Value
           .map(
             changes => {
@@ -43,9 +43,11 @@ export class DonorListPage implements OnInit {
                 key: c.payload.key, ...c.payload.val()
               }));
             }).subscribe((data) => {
-          this.donorList = this.totalList = data.map(array => {
-            return array;
-          });
+          this.donorList= this.totalList =  data.map(array => {
+             let value = array.key;
+            console.log(array[value]);
+            return array[value];
+           });
         });
       })
       .then(()=>{

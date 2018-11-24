@@ -7,23 +7,23 @@ import {
   NavParams,
   ToastController
 } from 'ionic-angular';
-import { SessionManager } from "../../../providers/service/session-manager";
-import { FirebaseServiceProvider } from "../../../providers/service/firebase-service-provider";
-import { Donor } from "../../../types/donor";
+
 import { CallNumber } from "@ionic-native/call-number";
 import { SMS } from "@ionic-native/sms";
-import {User} from "../../../types/user";
 import {AngularFireAuth} from "angularfire2/auth";
+import {Donor} from "../../types/donor";
+import {FirebaseServiceProvider} from "../../providers/service/firebase-service-provider";
+import {SessionManager} from "../../providers/service/session-manager";
 
 @IonicPage()
 @Component({
-  selector: 'page-donor-info',
-  templateUrl: 'donor-info.html',
+  selector: 'page-donor-info-admin',
+  templateUrl: 'donor-info-admin.html',
 })
-export class DonorInfoPage {
+export class DonorInfoAdminPage {
 
   donor: Donor = {
-    name: 'Sample Data',
+    name: 'Alish',
     gender: 3,
     bloodgrp: 3,
     latestResponse: 0,
@@ -41,33 +41,15 @@ export class DonorInfoPage {
               private alertCtrl: AlertController, private toastCtrl: ToastController, private loadCtrl: LoadingController,
               private fauth: AngularFireAuth) {
     if (this.sessionManager.getCurrentUser() === undefined) {
-      this.navCtrl.setRoot("UserLoginPage");
-    }
+      this.navCtrl.setRoot("AdminLoginPage");
+      }
+
+    this.donor = (this.navParams.get('donor'));
 
     let loader = this.loadCtrl.create({
       duration: 10000
     });
 
-    loader.present()
-      .then(()=>{
-        this.firebaseService
-          .getDonorList() // Gives DB LIst
-          .snapshotChanges() // Gives Key and Value
-          .map(
-            changes => {
-              return changes.map(c => ({ // return object for each changes
-                key: c.payload.key, ...c.payload.val()
-              }));
-            }).subscribe((data) => {
-          data.map(array => {
-            console.log(array);
-            this.donor = array;
-          })
-        })
-      })
-      .then(()=>{
-        loader.dismissAll();
-      })
   }
 
   ionViewWillLoad() {

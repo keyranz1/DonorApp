@@ -50,7 +50,7 @@
 
   <ion-grid>
     <ng-container *ngIf="!searchParams.searchDonorList.length>0">
-      <ion-row class="donor-list" *ngFor="let donor of donorList " navPush="DonorInfoPage"
+      <ion-row class="donor-list" *ngFor="let donor of donorList " navPush="DonorInfoAdminPage"
                [navParams]="{donor: donor}">
         <div class="colored-border" [donor-response]="donor.latestResponse"></div>
         <ion-col class="avatar-col">
@@ -70,7 +70,7 @@
     </ng-container>
 
     <ng-container *ngIf="searchParams.searchDonorList.length>0">
-      <ion-row class="donor-list" *ngFor="let donor of searchParams.searchDonorList " navPush="DonorInfoPage"
+      <ion-row class="donor-list" *ngFor="let donor of searchParams.searchDonorList " navPush="DonorInfoAdminPage"
                [navParams]="{donor: donor}">
         <div class="colored-border" [donor-response]="donor.latestResponse"></div>
         <ion-col class="avatar-col">
@@ -91,8 +91,8 @@
     </ng-container>
   </ion-grid>
 
-    <button class="draggable-fab" ion-fixed draggable ion-fab navPush="AddDonorPage">
-      <ion-icon name="ios-add"></ion-icon>
-    </button>
+    <!--<button class="draggable-fab" ion-fixed draggable ion-fab navPush="AddDonorPage">-->
+      <!--<ion-icon name="ios-add"></ion-icon>-->
+    <!--</button>-->
 </ion-content>
 

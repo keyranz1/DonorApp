@@ -1,22 +1,30 @@
-import { Injectable } from "@angular/core";
-import { Donor } from "../../types/donor";
-import { Patient } from "../../types/patient";
-import { AngularFireDatabase } from "angularfire2/database";
-import { Firebase } from '@ionic-native/firebase';
-import {User} from "../../types/user";
+import {Injectable} from "@angular/core";
+import {Donor} from "../../types/donor";
+import {Patient} from "../../types/patient";
+import {AngularFireDatabase} from "angularfire2/database";
+import {Firebase} from '@ionic-native/firebase';
+import {User} from "firebase/app";
+import {AngularFireAuth} from "angularfire2/auth";
+import {SessionManager} from "./session-manager";
+
 
 @Injectable()
 export class FirebaseServiceProvider {
 
-  private donorListRef = this.db.list<Donor>('/donor-list');
+  user: string;
+
+  private donorListRef1 = this.db.list<Donor>(`/donor-list/`);
   private patientListRef = this.db.list<Patient>('/patient-list/');
 
-  constructor(private db: AngularFireDatabase, private firebase: Firebase) {
+  constructor(private db: AngularFireDatabase, private firebase: Firebase, private afAuth: AngularFireAuth, private session: SessionManager) {
+    // this.user = this.afAuth.auth.currentUser.uid;
+
   }
 
   getPatientList() {
     return this.patientListRef;
   }
+
 
   addPatient(patient: Patient) {
     return this.patientListRef.push(patient);
@@ -32,22 +40,41 @@ export class FirebaseServiceProvider {
 
 
   getDonorList() {
-    return this.donorListRef;
+    this.user = this.afAuth.auth.currentUser.uid;
+    this.donorListRef1 = this.db.list<Donor>(`/donor-list/${this.user}`);
+    return this.donorListRef1;
   }
 
-  addDonor(donor: Donor) {
-    return this.donorListRef.push(donor);
+  getAdminDonorList(){
+    return this.donorListRef1 = this.db.list<Donor>('/donor-list/');
+  }
+
+  async addDonor(donor: Donor, userUID: string) {
+    //alert("User:" + this.user);
+    this.user = userUID;
+    console.log("From add Donor:" + this.user);
+    // try{
+    //   await this.donorListRef1.set(donor);
+    //   return true;
+    // } catch(e){
+    //   console.error(e);
+    //   return false;
+    // }
+    this.donorListRef1 = this.db.list<Donor>(`/donor-list/${this.user}`);
+
+    return this.donorListRef1.set(this.user,donor);
+
   }
 
   updateDonorDetails(donor: Donor) {
-    return this.donorListRef.update(donor.key, donor);
+    return this.donorListRef1.update(donor.key, donor);
   }
 
   deleteDonor(donor: Donor) {
-    return this.donorListRef.remove(donor.key);
+    return this.donorListRef1.remove(donor.key);
   }
 
-  setUserDisplayName(name: string){
+  setUserDisplayName(name: string) {
     console.log("done")
     return this.firebase.setUserProperty("displayName", name);
   }
