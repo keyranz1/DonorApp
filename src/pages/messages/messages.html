@@ -1,0 +1,43 @@
+<!--
+  Generated template for the MessagesPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>{{donor.name}}</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content no-padding>
+
+  <ion-grid>
+    <ion-row *ngFor="let message of adminMessages" margin="1">
+      <ion-icon name="person"></ion-icon>
+      <ion-badge item-start>{{message.text}}</ion-badge>
+    </ion-row>
+  </ion-grid>
+
+</ion-content>
+
+<ion-footer >
+  <ion-toolbar>
+    <ion-grid>
+      <ion-row></ion-row>
+      <ion-row>
+        <ion-col col-9>
+          <ion-textarea placeholder="Enter message" style="color: black;" [(ngModel)]="message.text"></ion-textarea>
+        </ion-col>
+        <ion-col col-3 style="text-align: center;">
+          <button clear ion-button style="border-left: 3px solid gray;" (click)="sendMessage()">
+            <ion-icon name="send" style="margin-left: 5px;  font-size:30px; color:black" ></ion-icon>
+          </button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-toolbar>
+</ion-footer>

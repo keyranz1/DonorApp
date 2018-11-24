@@ -14,6 +14,7 @@ import {AngularFireAuth} from "angularfire2/auth";
 import {Donor} from "../../types/donor";
 import {FirebaseServiceProvider} from "../../providers/service/firebase-service-provider";
 import {SessionManager} from "../../providers/service/session-manager";
+import {MessagesPage} from "../messages/messages";
 
 @IonicPage()
 @Component({
@@ -55,9 +56,12 @@ export class DonorInfoAdminPage {
   ionViewWillLoad() {
 
 
+  }
 
-
-
+  openChat(){
+    let chatDonor = this.donor;
+    console.log(chatDonor);
+    this.navCtrl.push('MessagesPage',{chatDonor});
   }
 
   removeDonor() {

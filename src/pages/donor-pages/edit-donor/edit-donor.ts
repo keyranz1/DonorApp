@@ -33,6 +33,7 @@ export class EditDonorPage {
       duration: 3000
     });
 
+
     loader.present()
       .then(()=>this.firebaseService.updateDonorDetails(this.donor))
       .then(() => this.navCtrl.setRoot("DonorInfoPage"))

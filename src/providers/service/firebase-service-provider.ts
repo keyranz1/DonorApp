@@ -6,6 +6,7 @@ import {Firebase} from '@ionic-native/firebase';
 import {User} from "firebase/app";
 import {AngularFireAuth} from "angularfire2/auth";
 import {SessionManager} from "./session-manager";
+import {Message} from "../../types/message";
 
 
 @Injectable()
@@ -79,4 +80,12 @@ export class FirebaseServiceProvider {
     return this.firebase.setUserProperty("displayName", name);
   }
 
+  getAdminMessage(donor: Donor){
+   return this.db.list<Message>(`message/${donor.key}`);
+  }
+
+  sendMessageToDonor(donor: Donor, message: Message){
+    const messageDonor = this.db.list<Message>(`message/${donor.key}`);
+    return messageDonor.push(message);
+  }
 }

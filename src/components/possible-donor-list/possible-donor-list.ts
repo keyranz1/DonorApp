@@ -12,11 +12,9 @@ import { Component } from '@angular/core';
 })
 export class PossibleDonorListComponent {
 
-  text: string;
 
   constructor() {
-    console.log('Hello PossibleDonorListComponent Component');
-    this.text = 'Hello World';
+
   }
 
 }
