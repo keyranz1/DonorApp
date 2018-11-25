@@ -45,7 +45,6 @@ export class DonorListPage implements OnInit {
             }).subscribe((data) => {
           this.donorList= this.totalList =  data.map(array => {
              let value = array.key;
-            console.log(array[value]);
             return array[value];
            });
         });
@@ -65,10 +64,8 @@ export class DonorListPage implements OnInit {
 
   searchOption(event: any) {
     this.searchParams.searchDonorList = this.totalList.filter((donor: Donor) => {
-      console.log(event.value);
       return donor.name.toLowerCase().includes(event.value.toLowerCase())
     });
-    console.log(this.searchParams.searchDonorList);
   }
 
   showByBloodType(event: any) {

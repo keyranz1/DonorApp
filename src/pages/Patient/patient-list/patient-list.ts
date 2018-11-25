@@ -44,7 +44,6 @@ export class PatientListPage implements OnInit {
             })
           .subscribe((data) => {
             this.patientList = data.map(array => {
-              console.log(array);
               return array;
             });
           return loader.dismiss();
@@ -62,7 +61,6 @@ export class PatientListPage implements OnInit {
     this.searchParams.searchPatientList = this.patientList.filter((patient: Patient) => {
       return patient.name.toLowerCase().includes(event.value.toLowerCase());
     });
-    console.log(this.searchParams.searchPatientList);
   }
 
   sort(event: any) {

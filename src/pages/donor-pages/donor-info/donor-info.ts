@@ -60,7 +60,6 @@ export class DonorInfoPage {
               }));
             }).subscribe((data) => {
           data.map(array => {
-            console.log(array);
             this.donor = array;
           })
         })

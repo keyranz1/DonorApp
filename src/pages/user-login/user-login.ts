@@ -20,8 +20,8 @@ export class UserLoginPage {
 
   timesTapped = 0;
   user = {
-    email: "Alia@selu.edu",
-    password: "Loveuu123",
+    email: "manish@gmail.com",
+    password: "panditmanish",
     displayName: "Morang"
   } as User;
 

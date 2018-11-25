@@ -7,6 +7,7 @@ import {User} from "firebase/app";
 import {AngularFireAuth} from "angularfire2/auth";
 import {SessionManager} from "./session-manager";
 import {Message} from "../../types/message";
+import set = Reflect.set;
 
 
 @Injectable()
@@ -80,12 +81,30 @@ export class FirebaseServiceProvider {
     return this.firebase.setUserProperty("displayName", name);
   }
 
-  getAdminMessage(donor: Donor){
-   return this.db.list<Message>(`message/${donor.key}`);
+  //GET MESSAGE SENT BY DONOR
+  getMessageFromDonor(key: string){
+    const admin = 'd8wP8yc9iQWWMlje0cCQd4vFBJn2';
+    return this.db.list<Message>(`message/${admin}/${key}`);
   }
 
-  sendMessageToDonor(donor: Donor, message: Message){
-    const messageDonor = this.db.list<Message>(`message/${donor.key}`);
-    return messageDonor.push(message);
+  //SEND MESSAGE TO ADMIN BY DONOR
+  sendMessageToAdmin(message){
+    const admin = 'd8wP8yc9iQWWMlje0cCQd4vFBJn2';
+    this.user = this.afAuth.auth.currentUser.uid;
+    const messageAdmin = this.db.list<Message>(`message/${admin}/${this.user}`);
+    return messageAdmin.push( message);
+  }
+
+  //SEND MESSAGE TO DONOR BY ADMIN
+  sendMessageToDonor(donorKey: string, message: Message){
+    this.user = this.afAuth.auth.currentUser.uid;
+    const messageDonor = this.db.list<Message>(`message/${donorKey}/${this.user}`);
+    return messageDonor.push( message);
+  }
+
+  //GET MESSAGE SENT BY ADMIN
+  getMessageFromAdmin(key:string){
+    const admin = 'd8wP8yc9iQWWMlje0cCQd4vFBJn2';
+    return this.db.list<Message>(`message/${key}/${admin}`);
   }
 }

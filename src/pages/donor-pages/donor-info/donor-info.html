@@ -57,7 +57,15 @@
     </ion-card-content>
   </ion-card>
 
-  <button ion-button block navPush="MessagesPage" [navParams]="donor">Chat</button>
+  <!--<button ion-button block navPush="MessagesPage" [navParams]="donor">Chat</button>-->
+  <ion-grid>
+    <ion-row>
+      <button ion-button color="chat" block full navPush="MessageForDonorPage" [navParams]="{donor:donor}">
+        <ion-icon name="app-chat"></ion-icon> Chat now
+      </button>
+    </ion-row>
+  </ion-grid>
+
 
   <ion-fab draggable>
     <button ion-fab>

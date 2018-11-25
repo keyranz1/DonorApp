@@ -14,6 +14,7 @@ export class Sorter {
 
   static sortByLastDonation(donorList: Donor[]) {
     return donorList.sort((a, b) => {
+      console.log(a);
       let d = new Date(a.latestDonation);
       let c = new Date(b.latestDonation);
       return c.getTime() - d.getTime();

@@ -1,9 +1,3 @@
-<!--
-  Generated template for the MessagesPage page.
-
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
 <ion-header>
 
   <ion-navbar>
@@ -12,15 +6,24 @@
 
 </ion-header>
 
-
 <ion-content no-padding>
-
-  <ion-grid>
-    <ion-row *ngFor="let message of adminMessages" margin="1">
-      <ion-icon name="person"></ion-icon>
-      <ion-badge item-start>{{message.text}}</ion-badge>
-    </ion-row>
-  </ion-grid>
+  <!--<ion-grid no-padding>-->
+    <!--<ion-row no-padding style="border: 1px solid blue" *ngFor="let message of sortedConversation " margin="1" [ngClass]="{true: 'admin-message', false: 'user-message'}[message.admin]">-->
+      <!--<ion-icon name="person"></ion-icon>-->
+      <!--<span>{{message.text}}</>-->
+    <!--</ion-row>-->
+  <!--</ion-grid>-->
+  <ion-list>
+    <ion-item no-lines *ngFor="let message of sortedConversation" [ngClass]="{true: 'admin-message', false: 'user-message'}[message.admin]">
+      <ion-avatar  item-end *ngIf="message.admin">
+        <img src="https://t3.ftcdn.net/jpg/00/07/32/48/500_F_7324864_FXazuBCI3dQBwIWY7gaWQzXskXJaTbrY.jpg">
+      </ion-avatar>
+      <ion-avatar item-start *ngIf="!message.admin">
+        <img src="http://www.kylevu.com/images/loginUser.png">
+      </ion-avatar>
+      <h2>{{message.text}}</h2>
+    </ion-item>
+  </ion-list>
 
 </ion-content>
 
@@ -30,11 +33,11 @@
       <ion-row></ion-row>
       <ion-row>
         <ion-col col-9>
-          <ion-textarea placeholder="Enter message" style="color: black;" [(ngModel)]="message.text"></ion-textarea>
+          <ion-textarea placeholder="Enter message" style="color: white;" [(ngModel)]="message.text"></ion-textarea>
         </ion-col>
-        <ion-col col-3 style="text-align: center;">
-          <button clear ion-button style="border-left: 3px solid gray;" (click)="sendMessage()">
-            <ion-icon name="send" style="margin-left: 5px;  font-size:30px; color:black" ></ion-icon>
+        <ion-col col-3 style="text-align: center; border-left: 3px solid white">
+          <button clear ion-button style="" (click)="sendMessage()" [disabled]="message.text.length < 1">
+            <ion-icon name="send" style="margin-left: 5px;  font-size:40px; color:white" ></ion-icon>
           </button>
         </ion-col>
       </ion-row>
