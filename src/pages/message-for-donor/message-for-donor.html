@@ -1,4 +1,3 @@
-<script src="../../utilities/sorter.ts"></script>
 <ion-header>
 
   <ion-navbar>
@@ -8,28 +7,51 @@
 </ion-header>
 
 <ion-content no-padding>
-  <ion-grid no-padding>
-    <ion-row no-padding style="border: 1px solid blue" *ngFor="let message of sortedConversation " margin="1">
-      <ion-badge item-start>{{message.text}}</ion-badge>
-    </ion-row>
-  </ion-grid>
+  <ion-list>
+    <ion-item no-lines *ngFor="let message of sortedConversation"
+              [ngClass]="{true: 'admin-message', false: 'user-message'}[message.admin]">
+
+      <div class="chat-message" text-right *ngIf="!message.admin">
+        <div class="right-bubble">
+          <!--<span class="msg-name">Me</span>-->
+          <!--<span class="msg-date">{{chat.sendDate | date:'short'}}</span>-->
+          <p text-wrap>{{message.text}}</p>
+        </div>
+      </div>
+
+      <!--<ion-badge *ngIf="!message.admin" style="background-color: #2b9deb" item-end>{{message.text}}</ion-badge>-->
+      <ion-avatar item-end *ngIf="!message.admin">
+        <img [src]="donor.gender | messageGenderDecider">
+      </ion-avatar>
+      <ion-avatar item-start *ngIf="message.admin">
+        <img src="../../assets/imgs/YBlogo.png">
+      </ion-avatar>
+      <!--<ion-badge *ngIf="message.admin" item-start>{{message.text}}</ion-badge>-->
+      <div class="chat-message" text-left *ngIf="message.admin">
+        <div class="left-bubble">
+          <!--<span class="msg-name">{{chat.user}}</span>-->
+          <!--<span class="msg-date">{{chat.sendDate | date:'short'}}</span>-->
+          <p text-wrap style="color:white">{{message.text}}</p>
+        </div>
+      </div>
+
+
+    </ion-item>
+  </ion-list>
 
 </ion-content>
 
-<ion-footer >
-  <ion-toolbar>
-    <ion-grid>
-      <ion-row></ion-row>
-      <ion-row>
-        <ion-col col-9>
-          <ion-textarea placeholder="Enter message" style="color: black;" [(ngModel)]="message.text"></ion-textarea>
-        </ion-col>
-        <ion-col col-3 style="text-align: center;">
-          <button clear ion-button style="border-left: 3px solid gray;" (click)="sendMessage()">
-            <ion-icon name="send" style="margin-left: 5px;  font-size:30px; color:black" ></ion-icon>
-          </button>
-        </ion-col>
-      </ion-row>
-    </ion-grid>
-  </ion-toolbar>
+<ion-footer>
+  <ion-grid>
+    <ion-row class="chatbox">
+      <ion-col col-10>
+        <ion-textarea placeholder="Enter message" [(ngModel)]="message.text"></ion-textarea>
+      </ion-col>
+      <ion-col no-padding col-2 style="text-align: center; border-left: 1px solid rgba(100,100,100,0.3)">
+        <button clear ion-button style="" (click)="sendMessage()" [disabled]="message.text.length < 1">
+          <ion-icon class="sendBtn" name="send"></ion-icon>
+        </button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-footer>

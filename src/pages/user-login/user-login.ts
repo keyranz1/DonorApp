@@ -67,18 +67,23 @@ export class UserLoginPage {
 
     this.fireauth.auth.signInWithEmailAndPassword(this.user.email,this.user.password)
       .then((res) => {
-        toaster.setMessage(res.message);
-        toaster.present();
         this.sessionManager.setCurrentUser(this.user);
+        this.fireauth.auth.onAuthStateChanged((userDonor)=>{
+          if(userDonor && userDonor.emailVerified){
+            this.navCtrl.setRoot('DonorInfoPage', {user: this.user});
+          }
+          else{
+            toaster.setMessage("Please verify your email address");
+            toaster.present();
+          }
       })
-      .then(()=> {
-        this.navCtrl.setRoot('DonorInfoPage', {user: this.user});
-      })
+    })
       .catch((error) => {
         console.log(error);
         toaster.setMessage(error.message);
-        toaster.present();
+        return toaster.present();
       });
+
   }
 
 }

@@ -1,7 +1,13 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>{{donor.name}}</ion-title>
+    <ion-title text-center>{{donor.name}}</ion-title>
+
+    <ion-buttons right>
+      <button ion-button icon-only (click)="logOut()">
+        <ion-icon name='log-out'></ion-icon>
+      </button>
+    </ion-buttons>
   </ion-navbar>
 
 </ion-header>
@@ -10,16 +16,16 @@
 <ion-content padding>
 
   <ion-grid>
-    <ion-row>
-      <ion-col>
-        <ion-icon class="contact-button" name="app-call" (click)="callDonor()"></ion-icon>
-      </ion-col>
+    <ion-row text-center>
+      <!--<ion-col>-->
+        <!--<ion-icon class="contact-button" name="app-call" (click)="callDonor()"></ion-icon>-->
+      <!--</ion-col>-->
       <ion-col>
         <ion-icon class="avatar" [name]="donor.gender | genderDecider"></ion-icon>
       </ion-col>
-      <ion-col>
-        <ion-icon class="contact-button" name="app-message" (click)="smsDonor()"></ion-icon>
-      </ion-col>
+      <!--<ion-col>-->
+        <!--<ion-icon class="contact-button" name="app-message" (click)="smsDonor()"></ion-icon>-->
+      <!--</ion-col>-->
     </ion-row>
     <ion-row>
       <h2 class="donor-name"> {{donor.name}}</h2>
@@ -61,11 +67,10 @@
   <ion-grid>
     <ion-row>
       <button ion-button color="chat" block full navPush="MessageForDonorPage" [navParams]="{donor:donor}">
-        <ion-icon name="app-chat"></ion-icon> Chat now
+        <ion-icon name="app-chat"></ion-icon> Chat with Admin
       </button>
     </ion-row>
   </ion-grid>
-
 
   <ion-fab draggable>
     <button ion-fab>

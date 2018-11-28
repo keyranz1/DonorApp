@@ -58,7 +58,6 @@ export class MessagesPage {
       this.donorMessages = data.map(array => {
         return array;
       });
-      console.log(this.donorMessages);
       this.donorMessages.forEach((value) => {
         this.conversation.push(value);
       });
@@ -76,13 +75,11 @@ export class MessagesPage {
         this.adminMessages = data.map(array => {
           return array;
         });
-        console.log(this.adminMessages);
         this.adminMessages.forEach((value) => {
           this.conversation.push(value);
         });
 
 
-        console.log(' this conversation', this.conversation);
 
         this.sortedConversation = this.sorter(this.conversation);
         this.sortedConversation.forEach((msg) => {
@@ -109,13 +106,13 @@ export class MessagesPage {
     this.service.sendMessageToDonor(this.donor.key, this.message)
       .then(() => {
         this.conversation = [];
+        this.sortedConversation = [];
         this.message.text = '';
         this.ionViewDidLoad();
       })
   }
 
   sorter(conv: Message[]) {
-    console.log(conv);
     let sortedConversation = conv.sort((a, b) => {
       let t1 = a.time;
       let t2 = b.time;

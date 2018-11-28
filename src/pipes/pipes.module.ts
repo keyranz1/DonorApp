@@ -5,19 +5,22 @@ import { DonorResponsePipe } from './donor-response/donor-response';
 import { PatientPriorityPipe } from './patient-priority/patient-priority';
 import { DateFormatterPipe } from './date-formatter/date-formatter';
 import { SorterPipe } from './sorter/sorter';
+import { MessageGenderDeciderPipe } from './message-gender-decider/message-gender-decider';
 @NgModule({
 	declarations: [BloodTypePipe,
     GenderDeciderPipe,
     DonorResponsePipe,
     PatientPriorityPipe,
     DateFormatterPipe,
-    SorterPipe],
+    SorterPipe,
+    MessageGenderDeciderPipe],
 	imports: [],
 	exports: [BloodTypePipe,
     GenderDeciderPipe,
     DonorResponsePipe,
     PatientPriorityPipe,
     DateFormatterPipe,
-    SorterPipe]
+    SorterPipe,
+    MessageGenderDeciderPipe]
 })
 export class PipesModule {}

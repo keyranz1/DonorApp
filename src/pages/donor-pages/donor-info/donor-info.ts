@@ -14,6 +14,7 @@ import { CallNumber } from "@ionic-native/call-number";
 import { SMS } from "@ionic-native/sms";
 import {User} from "../../../types/user";
 import {AngularFireAuth} from "angularfire2/auth";
+import {UserLoginPageModule} from "../../user-login/user-login.module";
 
 @IonicPage()
 @Component({
@@ -71,11 +72,8 @@ export class DonorInfoPage {
 
   ionViewWillLoad() {
 
-
-
-
-
   }
+
 
   removeDonor() {
     let toaster = this.toastCtrl.create({
@@ -139,5 +137,9 @@ export class DonorInfoPage {
     this.messageDonor.hasPermission()
       .then(() => this.messageDonor.send(this.donor.phoneNumber, message))
       .catch(() => alerter.present());
+  }
+
+  logOut(){
+    this.navCtrl.setRoot('UserLoginPage');
   }
 }

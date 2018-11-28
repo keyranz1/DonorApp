@@ -43,6 +43,7 @@ export class RegisterPage {
         this.db.auth.createUserWithEmailAndPassword(this.email,this.password)
           .then((userData)=>{
             console.log(userData.uid);
+            this.db.app.auth().currentUser.sendEmailVerification();
              this.db.auth.signInWithEmailAndPassword(this.email,this.password)
                .then((result)=>{
                  console.log(result.uid);
