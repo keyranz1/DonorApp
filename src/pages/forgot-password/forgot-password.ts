@@ -37,7 +37,7 @@ export class ForgotPasswordPage {
       toaster.setCssClass("success-toaster");
       toaster.present()
         .then(()=>{
-          this.navCtrl.push("HomePage");
+          this.navCtrl.setRoot("UserLoginPage");
         })
     })
       .catch((err)=>{

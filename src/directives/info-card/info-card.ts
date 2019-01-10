@@ -1,11 +1,18 @@
-import { AfterViewInit, Directive, ElementRef, Input, Renderer2 } from '@angular/core';
-import { DonorResponse } from "../../enums/donor-response-enum";
+import {Directive, ElementRef, Input, Renderer2} from '@angular/core';
+import {DonorResponse} from "../../enums/donor-response-enum";
 
+/**
+ * Generated class for the InfoCardDirective directive.
+ *
+ * See https://angular.io/api/core/Directive for more info on Angular
+ * Directives.
+ */
 @Directive({
-  selector: '[donor-response]' // Attribute selector
+  selector: '[info-card]' // Attribute selector
 })
-export class DonorResponseDirective implements AfterViewInit {
-  @Input('donor-response') response: string;
+export class InfoCardDirective {
+  @Input('info-card') response: any;
+
 
   constructor(private renderer: Renderer2, private elementRef: ElementRef) {
   }

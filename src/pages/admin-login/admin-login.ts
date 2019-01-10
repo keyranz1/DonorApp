@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { AlertController, IonicPage, LoadingController, NavController, NavParams } from 'ionic-angular';
+import {AlertController, IonicPage, LoadingController, NavController, NavParams, ToastController} from 'ionic-angular';
 import { User } from "../../types/user";
 import { AngularFireAuth } from "angularfire2/auth";
 import { SessionManager } from "../../providers/service/session-manager";
@@ -12,8 +12,8 @@ import { SessionManager } from "../../providers/service/session-manager";
 export class AdminLoginPage {
   tap = 0;
   user = {
-    email: "kiran.yadubanshi@selu.edu",
-    password: "loveuuz",
+    email: "",
+    password: "",
     displayName: "Morang"
   } as User;
 
@@ -22,7 +22,8 @@ export class AdminLoginPage {
               private afAuth: AngularFireAuth,
               private loadCtrl: LoadingController,
               private alertCtrl: AlertController,
-              private sessionManager: SessionManager) {
+              private sessionManager: SessionManager,
+              private toastCtrl: ToastController) {
   }
 
   async login(user: User) {
@@ -36,23 +37,33 @@ export class AdminLoginPage {
     });
 
     // console.log(this.afAuth.auth.currentUser);
-    return loader.present()
-      .then(() => this.afAuth.auth.signInWithEmailAndPassword(user.email, user.password))
-      .then(() => {
-        this.sessionManager.setCurrentUser(this.user);
-        // console.log(this.afAuth.auth.currentUser);
-        return this.navCtrl.setRoot("PatientListPage")
-      })
-      .then(() => loader.dismiss())
-      .catch((error) => {
-        console.log(error);
-        loader.dismiss()
-          .then(() => {
-            alerter.setTitle(error.code);
-            alerter.setMessage(error.message);
-           return alerter.present();
-          });
-      });
+    if(user.email == 'kiran.yadubanshi@selu.edu') {
+      return loader.present()
+        .then(() =>
+          this.afAuth.auth.signInWithEmailAndPassword(user.email, user.password))
+        .then(() => {
+          this.sessionManager.setCurrentUser(this.user);
+          // console.log(this.afAuth.auth.currentUser);
+          return this.navCtrl.setRoot("PatientListPage")
+        })
+        .then(() => loader.dismiss())
+        .catch((error) => {
+          console.log(error);
+          loader.dismiss()
+            .then(() => {
+              alerter.setTitle(error.code);
+              alerter.setMessage(error.message);
+              return alerter.present();
+            });
+        });
+    } else {
+      this.toastCtrl.create({
+        message: "You dont have admin access. Please login in with admin credentials.",
+        duration: 3500
+      }).present();
+
+    }
+
   }
 
   tapped(){

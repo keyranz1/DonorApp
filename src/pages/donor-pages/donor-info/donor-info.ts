@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 import {
   AlertController,
   IonicPage,
@@ -7,11 +7,11 @@ import {
   NavParams,
   ToastController
 } from 'ionic-angular';
-import { SessionManager } from "../../../providers/service/session-manager";
-import { FirebaseServiceProvider } from "../../../providers/service/firebase-service-provider";
-import { Donor } from "../../../types/donor";
-import { CallNumber } from "@ionic-native/call-number";
-import { SMS } from "@ionic-native/sms";
+import {SessionManager} from "../../../providers/service/session-manager";
+import {FirebaseServiceProvider} from "../../../providers/service/firebase-service-provider";
+import {Donor} from "../../../types/donor";
+import {CallNumber} from "@ionic-native/call-number";
+import {SMS} from "@ionic-native/sms";
 import {User} from "../../../types/user";
 import {AngularFireAuth} from "angularfire2/auth";
 import {UserLoginPageModule} from "../../user-login/user-login.module";
@@ -46,11 +46,11 @@ export class DonorInfoPage {
     }
 
     let loader = this.loadCtrl.create({
-      duration: 10000
+      duration: 10000,
+      dismissOnPageChange: true
     });
 
-    loader.present()
-      .then(()=>{
+
         this.firebaseService
           .getDonorList() // Gives DB LIst
           .snapshotChanges() // Gives Key and Value
@@ -64,10 +64,6 @@ export class DonorInfoPage {
             this.donor = array;
           })
         })
-      })
-      .then(()=>{
-        loader.dismissAll();
-      })
   }
 
   ionViewWillLoad() {
@@ -96,7 +92,7 @@ export class DonorInfoPage {
           loader.present()
             .then(() => this.firebaseService.deleteDonor(this.donor))
             .then(() => {
-              this.navCtrl.setRoot('DonorListPage')
+              this.navCtrl.setRoot('UserLoginPage')
                 .then(() => loader.dismiss())
                 .then(() => {
                   toaster.setMessage("Donor info successfully deleted.");
@@ -139,7 +135,7 @@ export class DonorInfoPage {
       .catch(() => alerter.present());
   }
 
-  logOut(){
+  logOut() {
     this.navCtrl.setRoot('UserLoginPage');
   }
 }

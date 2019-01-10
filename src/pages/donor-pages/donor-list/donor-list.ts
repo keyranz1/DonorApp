@@ -51,8 +51,10 @@ export class DonorListPage implements OnInit {
       })
       .then(()=>{
       this.donorList = Sorter.sortByName(this.totalList);
-      return loader.dismiss()
     })
+      .then(()=>{
+        return loader.dismiss()
+      })
 
   }
 

@@ -20,8 +20,8 @@ export class UserLoginPage {
 
   timesTapped = 0;
   user = {
-    email: "manish@gmail.com",
-    password: "panditmanish",
+    email: "",
+    password: "",
     displayName: "Morang"
   } as User;
 
@@ -63,6 +63,7 @@ export class UserLoginPage {
 
     let toaster = this.toastCtrl.create({
       duration: 3000,
+      dismissOnPageChange: true
     });
 
     this.fireauth.auth.signInWithEmailAndPassword(this.user.email,this.user.password)
@@ -79,6 +80,7 @@ export class UserLoginPage {
       })
     })
       .catch((error) => {
+
         console.log(error);
         toaster.setMessage(error.message);
         return toaster.present();

@@ -24,7 +24,7 @@ import {MessagesPage} from "../messages/messages";
 export class DonorInfoAdminPage {
 
   donor: Donor = {
-    name: 'Alish',
+    name: 'Sample Data',
     gender: 3,
     bloodgrp: 3,
     latestResponse: 0,

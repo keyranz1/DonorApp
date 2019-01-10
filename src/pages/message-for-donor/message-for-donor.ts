@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, ElementRef, Renderer2} from '@angular/core';
 import {IonicPage, LoadingController, NavController, NavParams} from 'ionic-angular';
 import {FirebaseServiceProvider} from "../../providers/service/firebase-service-provider";
 import {Message} from "../../types/message";
@@ -32,15 +32,13 @@ export class MessageForDonorPage {
   sortedConversation: Message[] = [];
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private loadCtrl: LoadingController,
-              private service: FirebaseServiceProvider, private fAuth: AngularFireAuth) {
+              private service: FirebaseServiceProvider, private fAuth: AngularFireAuth,
+              private renderer: Renderer2, private element: ElementRef) {
     this.donor = this.navParams.get('donor');
   }
 
   ionViewDidLoad() {
     console.log(this.donor);
-    let loader = this.loadCtrl.create({
-      duration: 10000
-    });
     this.service
       .getMessageFromAdmin(this.fAuth.auth.currentUser.uid) // Gives DB LIst
       .snapshotChanges() // Gives Key and Value
@@ -70,7 +68,6 @@ export class MessageForDonorPage {
       this.adminMessages = data.map(array => {
         return array;
       });
-      console.log(this.adminMessages);
       this.adminMessages.forEach((value) => {
         this.conversation.push(value);
       });

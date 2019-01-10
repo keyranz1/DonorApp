@@ -16,30 +16,27 @@
 <ion-content padding>
 
   <ion-grid>
+
     <ion-row text-center>
-      <!--<ion-col>-->
-        <!--<ion-icon class="contact-button" name="app-call" (click)="callDonor()"></ion-icon>-->
-      <!--</ion-col>-->
       <ion-col>
         <ion-icon class="avatar" [name]="donor.gender | genderDecider"></ion-icon>
       </ion-col>
-      <!--<ion-col>-->
-        <!--<ion-icon class="contact-button" name="app-message" (click)="smsDonor()"></ion-icon>-->
-      <!--</ion-col>-->
     </ion-row>
+
     <ion-row>
       <h2 class="donor-name"> {{donor.name}}</h2>
       <div class="sub-label">
         <ion-label>Blood type: {{donor.bloodgrp | bloodType}}</ion-label>
       </div>
     </ion-row>
+
   </ion-grid>
 
   <ion-card>
     <ion-card-header text-center>
       Donor Info:
     </ion-card-header>
-    <ion-card-content>
+    <ion-card-content donor-response="{{donor.latestResponse}}">
       <ion-item>
         <h4>Address:</h4>
         <p> {{donor.address}}</p>
@@ -63,11 +60,10 @@
     </ion-card-content>
   </ion-card>
 
-  <!--<button ion-button block navPush="MessagesPage" [navParams]="donor">Chat</button>-->
   <ion-grid>
     <ion-row>
       <button ion-button color="chat" block full navPush="MessageForDonorPage" [navParams]="{donor:donor}">
-        <ion-icon name="app-chat"></ion-icon> Chat with Admin
+        Chat with Admin <ion-badge></ion-badge>
       </button>
     </ion-row>
   </ion-grid>
@@ -77,9 +73,9 @@
       <ion-icon name="ios-arrow-back"></ion-icon>
     </button>
     <ion-fab-list side="left">
-      <button ion-fab (click)="removeDonor()">
-        <ion-icon name="md-trash"></ion-icon>
-      </button>
+      <!--<button ion-fab (click)="removeDonor()">-->
+        <!--<ion-icon name="md-trash"></ion-icon>-->
+      <!--</button>-->
       <button ion-fab navPush="EditDonorPage" [navParams]="{donor:donor}">
         <ion-icon name="md-create"></ion-icon>
       </button>
