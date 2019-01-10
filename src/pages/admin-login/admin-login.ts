@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { AlertController, IonicPage, LoadingController, NavController, NavParams } from 'ionic-angular';
+import {AlertController, IonicPage, LoadingController, NavController, NavParams, ToastController} from 'ionic-angular';
 import { User } from "../../types/user";
 import { AngularFireAuth } from "angularfire2/auth";
 import { SessionManager } from "../../providers/service/session-manager";
@@ -23,7 +23,8 @@ export class AdminLoginPage {
               private afAuth: AngularFireAuth,
               private loadCtrl: LoadingController,
               private alertCtrl: AlertController,
-              private sessionManager: SessionManager) {
+              private sessionManager: SessionManager,
+              private toastCtrl: ToastController) {
   }
 
   async login(user: User) {

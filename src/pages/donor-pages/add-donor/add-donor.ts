@@ -61,7 +61,7 @@ export class AddDonorPage {
         this.navCtrl.setRoot('DonorInfoPage', this.donor)
           .then(() => {
             toaster.setCssClass("success-toaster");
-            toaster.setMessage("Donor successfully added to the Donor list");
+            toaster.setMessage("Donor successfully added to the Donor list. Now Please verify your email address");
             toaster.present()
               .catch(() => {
                 toaster.setCssClass("failure-toaster");

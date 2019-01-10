@@ -1,4 +1,4 @@
-import {Component, ViewChild} from '@angular/core';
+import {Component,ViewChild, ElementRef, Renderer2} from '@angular/core';
 import {IonicPage, LoadingController, NavController, NavParams} from 'ionic-angular';
 import {FirebaseServiceProvider} from "../../providers/service/firebase-service-provider";
 import {Message} from "../../types/message";
@@ -33,7 +33,8 @@ export class MessageForDonorPage {
   conversation: Message[] = [];
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private loadCtrl: LoadingController,
-              private service: FirebaseServiceProvider, private fAuth: AngularFireAuth) {
+              private service: FirebaseServiceProvider, private fAuth: AngularFireAuth,
+              private renderer: Renderer2, private element: ElementRef) {
     this.donor = this.navParams.get('donor');
 
     this.photoUrl = this.donor.photoUrl;
@@ -47,6 +48,7 @@ export class MessageForDonorPage {
 
     this.content.scrollToBottom(300);
 
+
     this.service
       .getMessages(this.fAuth.auth.currentUser.uid) // Gives DB LIst
       .snapshotChanges() // Gives Key and Value
@@ -58,11 +60,7 @@ export class MessageForDonorPage {
         }).subscribe((data) => {
       this.conversation = data.map(array => {
         return array;
-      });
-    });
-
-  }
-
+      });}}
 
   sendMessage() {
 

@@ -47,11 +47,13 @@ export class DonorInfoPage {
     }
 
     let loader = this.loadCtrl.create({
-      duration: 10000
+      duration: 10000,
+      dismissOnPageChange: true
     });
 
     loader.present()
       .then(() => {
+
         this.firebaseService
           .getDonorList() // Gives DB LIst
           .snapshotChanges() // Gives Key and Value
@@ -97,11 +99,8 @@ export class DonorInfoPage {
           loader.present()
             .then(() => this.firebaseService.deleteDonor(this.donor))
             .then(() => {
-              const user = this.fauth.auth.currentUser;
-              user.delete();
-            })
-            .then(() => {
-              this.navCtrl.setRoot('DonorListPage')
+
+              this.navCtrl.setRoot('UserLoginPage')
                 .then(() => loader.dismiss())
                 .then(() => {
                   toaster.setMessage("Donor info successfully deleted.");

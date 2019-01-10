@@ -1,7 +1,9 @@
 import {Component} from '@angular/core';
 import {IonicPage, LoadingController, NavController, NavParams, ToastController} from 'ionic-angular';
-import {FirebaseServiceProvider} from "../../../providers/service/firebase-service-provider";
-import {Donor} from "../../../types/donor";
+import {Donor} from "../../types/donor";
+import {FirebaseServiceProvider} from "../../providers/service/firebase-service-provider";
+import {DonorListPage} from "../donor-pages/donor-list/donor-list";
+
 
 /**
  * Generated class for the EditDonorPage page.
@@ -12,10 +14,10 @@ import {Donor} from "../../../types/donor";
 
 @IonicPage()
 @Component({
-  selector: 'page-edit-donor',
-  templateUrl: 'edit-donor.html',
+  selector: 'page-donor-edit-admin',
+  templateUrl: 'donor-edit-admin.html',
 })
-export class EditDonorPage {
+export class DonorEditAdminPage {
 
   donor: Donor;
 
@@ -36,6 +38,7 @@ export class EditDonorPage {
     });
 
 
+
     loader.present()
       .then(() => this.firebaseService.updateDonorDetails(this.donor))
       .then(() => {
@@ -44,7 +47,7 @@ export class EditDonorPage {
         toaster.setCssClass("success-toaster");
         return toaster.present()
       })
-      .then(() => this.navCtrl.setRoot("DonorInfoPage"))
+      .then(() => this.navCtrl.setRoot("DonorListPage"))
 
       .catch(() => {
         loader.dismiss();
