@@ -1,18 +1,10 @@
-import {Component} from '@angular/core';
+import {Component, ViewChild} from '@angular/core';
 import {IonicPage, LoadingController, NavController, NavParams} from 'ionic-angular';
 import {Donor} from "../../types/donor";
 import {FirebaseServiceProvider} from "../../providers/service/firebase-service-provider";
 import {Message} from "../../types/message";
 import {AngularFireAuth} from "angularfire2/auth";
-import {Sorter} from "../../utilities/sorter";
 import {SessionManager} from "../../providers/service/session-manager";
-
-/**
- * Generated class for the MessagesPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
 
 @IonicPage()
 @Component({
@@ -25,29 +17,41 @@ export class MessagesPage {
   message: Message = {
     messagerKey: this.fAuth.auth.currentUser.uid,
     time: 0,
-    text: ''
+    text: '',
+    isAdminMessage: true,
   };
-
-  adminMessages: Message[] = [{messagerKey: null, text: 'Start Conversation', time: 0}];
-  donorMessages: Message[] = [];
   conversation: Message[] = [];
-  sortedConversation: Message[] = [];
+  isAdminLoggedIn = false;
+  donorDetails: any[];
 
+  @ViewChild('content') content : any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private service: FirebaseServiceProvider,
               private fAuth: AngularFireAuth, private loadCtrl: LoadingController,
               private sessionManager: SessionManager) {
+    if (!this.sessionManager.getCurrentUser()) {
+      this.navCtrl.setRoot("UserLoginPage");
+    }
     this.donor = this.navParams.get('donor');
-    console.log('page created')
   }
 
   ionViewDidLoad() {
 
-    let loader = this.loadCtrl.create({
-      duration: 10000
-    });
+    console.log(this.fAuth.auth.currentUser.uid);
+    if (this.fAuth.auth.currentUser.uid == 'WtiYexd5QOMuOsV5v4Yi6tFxsYy2'){
+      this.isAdminLoggedIn = true;
+      this.message.isAdminMessage = true;
+    } else {
+      this.message.isAdminMessage = false;
+    }
+
+    console.log(this.donor);
+
+
+    this.content.scrollToBottom(300);
+
     this.service
-      .getMessageFromAdmin(this.donor.key) // Gives DB LIst
+      .getMessages(this.donor.key) // Gives DB LIst
       .snapshotChanges() // Gives Key and Value
       .map(
         changes => {
@@ -55,79 +59,33 @@ export class MessagesPage {
             key: c.payload.key, ...c.payload.val()
           }));
         }).subscribe((data) => {
-      this.donorMessages = data.map(array => {
+      this.conversation = data.map(array => {
         return array;
       });
-      this.donorMessages.forEach((value) => {
-        this.conversation.push(value);
-      });
-
-
-      this.service
-        .getMessageFromDonor(this.donor.key) // Gives DB LIst
-        .snapshotChanges() // Gives Key and Value
-        .map(
-          changes => {
-            return changes.map(c => ({ // return object for each changes
-              key: c.payload.key, ...c.payload.val()
-            }));
-          }).subscribe((data) => {
-        this.adminMessages = data.map(array => {
-          return array;
-        });
-        this.adminMessages.forEach((value) => {
-          this.conversation.push(value);
-        });
-
-
-
-        this.sortedConversation = this.sorter(this.conversation);
-        this.sortedConversation.forEach((msg) => {
-          if (msg.messagerKey.indexOf('d8wP8yc9iQWWMlje0cCQd4vFBJn2') > -1) {
-            msg['admin'] = true;
-          } else {
-            msg['admin'] = false;
-          }
-        });
-      });
-
     });
   }
 
   ionViewWillLoad() {
-    if (!this.sessionManager.getCurrentUser()) {
-      this.navCtrl.setRoot("AdminLoginPage");
-    }
+
+    this.content.scrollToBottom(300);
+
   }
 
   sendMessage() {
+    if (this.fAuth.auth.currentUser.uid == 'WtiYexd5QOMuOsV5v4Yi6tFxsYy2'){
+      this.isAdminLoggedIn = true;
+      this.message.isAdminMessage = true;
+    } else {
+      this.message.isAdminMessage = false;
+    }
     const date = new Date();
     this.message.time = date.getTime();
-    this.service.sendMessageToDonor(this.donor.key, this.message)
+    this.service.sendMessage(this.message, this.donor.key)
       .then(() => {
         this.conversation = [];
-        this.sortedConversation = [];
         this.message.text = '';
         this.ionViewDidLoad();
       })
   }
-
-  sorter(conv: Message[]) {
-    let sortedConversation = conv.sort((a, b) => {
-      let t1 = a.time;
-      let t2 = b.time;
-      if (t1 === t2) {
-        return 0;
-      }
-      else if (t1 - t2 < 0) {
-        return -1;
-      } else {
-        return 1;
-      }
-    });
-
-    return sortedConversation;
-  }
-
 
 }

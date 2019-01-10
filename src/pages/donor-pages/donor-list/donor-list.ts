@@ -4,6 +4,7 @@ import { Donor } from "../../../types/donor";
 import { FirebaseServiceProvider } from "../../../providers/service/firebase-service-provider";
 import { SessionManager } from "../../../providers/service/session-manager";
 import { Sorter } from "../../../utilities/sorter";
+import {AngularFireAuth} from "angularfire2/auth";
 
 @IonicPage()
 @Component({
@@ -18,8 +19,12 @@ export class DonorListPage implements OnInit {
     searchToggled: boolean;
   };
 
-  constructor(public navCtrl: NavController, public navParams: NavParams,
-              private listService: FirebaseServiceProvider, private sessionManager: SessionManager, private loadCtrl: LoadingController) {
+  constructor(public navCtrl: NavController,
+              public navParams: NavParams,
+              private listService: FirebaseServiceProvider,
+              private sessionManager: SessionManager,
+              private fAuth: AngularFireAuth,
+              private loadCtrl: LoadingController) {
     this.donorList = [];
     this.totalList = [];
     this.searchParams = {
@@ -29,6 +34,7 @@ export class DonorListPage implements OnInit {
   }
 
   ngOnInit() {
+    console.log(this.fAuth.auth.currentUser);
     let loader = this.loadCtrl.create({
       duration: 10000
     });

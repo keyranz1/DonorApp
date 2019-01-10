@@ -20,8 +20,8 @@ export class UserLoginPage {
 
   timesTapped = 0;
   user = {
-    email: "manish@gmail.com",
-    password: "panditmanish",
+    email: "dhamalaalish@gmail.com",
+    password: "L0uisiana",
     displayName: "Morang"
   } as User;
 
@@ -51,8 +51,6 @@ export class UserLoginPage {
     });
 
     this.timesTapped++;
-
-    console.log(this.timesTapped);
     if(this.timesTapped == 5){
        alerter.present()
          .then(()=>{this.timesTapped = 0})

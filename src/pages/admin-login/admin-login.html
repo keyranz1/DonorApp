@@ -14,7 +14,7 @@
     </div>
     <ion-card padding>
       <ion-item>
-        <ion-input placeholder="Email" [(ngModel)]="user.email"></ion-input>
+        <ion-input placeholder="Email" disabled="true" placeholder="Enter Password for Admin"></ion-input>
       </ion-item>
       <ion-item>
         <ion-input type="password" placeholder="Password" [(ngModel)]="user.password"></ion-input>
@@ -24,10 +24,14 @@
         <!--<ion-label>Remember me</ion-label>-->
         <!--<ion-checkbox [(ngModel)]="remember"></ion-checkbox>-->
       <!--</ion-item>-->
-      <div margin-top class="forgotPassUserDiv"><a navPush="ForgotPasswordPage"> Forgot Password?</a>
+      <div margin-top class="forgotPassUserDiv">
+        <a navPush="ForgotPasswordPage"> Forgot Password?</a>
       </div>
+      <button ion-button color="chat" navPush="UserLoginPage" block>Go to Donor Login</button>
+
     </ion-card>
   </div>
+
 
 
 </ion-content>

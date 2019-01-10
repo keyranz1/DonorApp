@@ -33,6 +33,7 @@ export class DonorInfoAdminPage {
     address: '',
     phoneNumber: '',
     note: '',
+    isAdmin: false
   };
   currentUser: any;
 

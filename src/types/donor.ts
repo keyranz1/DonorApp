@@ -9,4 +9,6 @@ export interface Donor {
   address: string;
   phoneNumber: string;
   note: string;
+  isAdmin: boolean;
+  photoUrl?: string;
 }

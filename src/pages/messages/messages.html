@@ -6,22 +6,59 @@
 
 </ion-header>
 
-<ion-content no-padding>
-  <ion-list>
-    <ion-item no-lines *ngFor="let message of sortedConversation"
-              [ngClass]="{true: 'admin-message', false: 'user-message'}[message.admin]">
+<ion-content #content no-padding>
+  <div  *ngIf="!isAdminLoggedIn">
+    <ion-list>
+      <ion-item no-lines *ngFor="let message of conversation">
+        <div class="chat-message" text-right *ngIf="!message.isAdminMessage">
+          <div class="right-bubble">
+            <span text-wrap>{{message.text}}</span><br>
+            <span class="time"> {{message.time | date: "short"}}</span>
+          </div>
+        </div>
 
-      <ion-avatar item-start *ngIf="!message.admin">
-        <img [src]="donor.gender | messageGenderDecider">
-      </ion-avatar>
-      <ion-badge *ngIf="message.admin" item-end>{{message.text}}</ion-badge>
-      <ion-badge *ngIf="!message.admin" style="background-color: #2b9deb" item-start>{{message.text}}</ion-badge>
-      <ion-avatar item-end *ngIf="message.admin">
-        <img src="../../assets/imgs/YBlogo.png">
-      </ion-avatar>
-    </ion-item>
-  </ion-list>
+        <ion-avatar item-end *ngIf="!message.isAdminMessage">
+          <img [src]="donor.gender | messageGenderDecider">
+        </ion-avatar>
+        <ion-avatar item-start *ngIf="message.isAdminMessage">
+          <img src="../../assets/imgs/YBlogo.png">
+        </ion-avatar>
+        <div class="chat-message" text-left *ngIf="message.isAdminMessage">
+          <div class="left-bubble">
+            <span text-wrap>{{message.text}}</span><br>
+            <span class="time">{{message.time |date: "short"}}</span>
+          </div>
+        </div>
+      </ion-item>
+    </ion-list>
+  </div>
 
+  <div *ngIf="isAdminLoggedIn">
+    <ion-list>
+      <ion-item no-lines *ngFor="let message of conversation">
+        <div class="chat-message" text-left *ngIf="!message.isAdminMessage">
+          <div class="left-bubble">
+            <span text-wrap>{{message.text}}</span><br>
+            <span class="time"> {{message.time | date: "short"}}</span>
+          </div>
+        </div>
+
+        <ion-avatar item-start *ngIf="!message.isAdminMessage">
+          <img [src]="donor.gender | messageGenderDecider">
+        </ion-avatar>
+        <ion-avatar item-end *ngIf="message.isAdminMessage">
+          <img src="../../assets/imgs/YBlogo.png">
+        </ion-avatar>
+        <div class="chat-message" text-right *ngIf="message.isAdminMessage">
+          <div class="right-bubble">
+            <span text-wrap>{{message.text}}</span><br>
+            <span class="time">{{message.time |date: "short"}}</span>
+          </div>
+        </div>
+      </ion-item>
+    </ion-list>
+
+  </div>
 </ion-content>
 
 <ion-footer>

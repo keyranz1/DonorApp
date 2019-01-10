@@ -13,7 +13,8 @@ export class AdminLoginPage {
   tap = 0;
   user = {
     email: "kiran.yadubanshi@selu.edu",
-    password: "loveuuz",
+    password: "",
+    // password: "Loveuu123"
     displayName: "Morang"
   } as User;
 
@@ -32,7 +33,7 @@ export class AdminLoginPage {
     });
     let alerter = this.alertCtrl.create({
       message: "Could Not Login. Please try again",
-      buttons: ["Ok"]
+      buttons: ["OK"]
     });
 
     // console.log(this.afAuth.auth.currentUser);
@@ -41,7 +42,7 @@ export class AdminLoginPage {
       .then(() => {
         this.sessionManager.setCurrentUser(this.user);
         // console.log(this.afAuth.auth.currentUser);
-        return this.navCtrl.setRoot("PatientListPage")
+        return this.navCtrl.setRoot("DonorListPage")
       })
       .then(() => loader.dismiss())
       .catch((error) => {

@@ -1,8 +1,8 @@
-import { Component} from '@angular/core';
-import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angular';
-import { Donor } from "../../../types/donor";
-import { FirebaseServiceProvider } from "../../../providers/service/firebase-service-provider";
-import { SessionManager } from "../../../providers/service/session-manager";
+import {Component} from '@angular/core';
+import {IonicPage, NavController, NavParams, ToastController} from 'ionic-angular';
+import {Donor} from "../../../types/donor";
+import {FirebaseServiceProvider} from "../../../providers/service/firebase-service-provider";
+import {SessionManager} from "../../../providers/service/session-manager";
 import {AngularFireAuth} from "angularfire2/auth";
 
 @IonicPage()
@@ -17,7 +17,7 @@ export class AddDonorPage {
 
   donor: Donor = {
     name: '',
-    gender: 2,
+    gender: 0,
     bloodgrp: undefined,
     latestResponse: 0,
     latestDonation: '',
@@ -25,17 +25,34 @@ export class AddDonorPage {
     address: '',
     phoneNumber: '',
     note: '',
-    key: this.user
+    key: this.user,
+    isAdmin: false,
+    photoUrl: '',
   };
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private listService: FirebaseServiceProvider,
-              private toastCtrl: ToastController, private sessionManager: SessionManager, private db: AngularFireAuth) {}
+              private toastCtrl: ToastController, private sessionManager: SessionManager, private db: AngularFireAuth) {
+  }
 
   ionViewDidLoad() {
     console.log("After Loading:" + this.user);
   }
 
   onAdd() {
+    if (this.donor.gender === 0) {
+      this.donor.photoUrl = "../../assets/icon/man.svg";
+      this.db.auth.currentUser.updateProfile({
+        photoURL: this.donor.photoUrl,
+        displayName: this.donor.name,
+      })
+    } else if (this.donor.gender === 1) {
+      this.donor.photoUrl = "../../assets/icon/girl.svg";
+      this.db.auth.currentUser.updateProfile({
+        photoURL: this.donor.photoUrl,
+        displayName: this.donor.name,
+      })
+    }
+
     let toaster = this.toastCtrl.create({
       duration: 3000,
     });

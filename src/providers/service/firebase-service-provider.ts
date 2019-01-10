@@ -3,12 +3,9 @@ import {Donor} from "../../types/donor";
 import {Patient} from "../../types/patient";
 import {AngularFireDatabase} from "angularfire2/database";
 import {Firebase} from '@ionic-native/firebase';
-import {User} from "firebase/app";
 import {AngularFireAuth} from "angularfire2/auth";
 import {SessionManager} from "./session-manager";
 import {Message} from "../../types/message";
-import set = Reflect.set;
-
 
 @Injectable()
 export class FirebaseServiceProvider {
@@ -19,7 +16,6 @@ export class FirebaseServiceProvider {
   private patientListRef = this.db.list<Patient>('/patient-list/');
 
   constructor(private db: AngularFireDatabase, private firebase: Firebase, private afAuth: AngularFireAuth, private session: SessionManager) {
-    // this.user = this.afAuth.auth.currentUser.uid;
 
   }
 
@@ -81,30 +77,15 @@ export class FirebaseServiceProvider {
     return this.firebase.setUserProperty("displayName", name);
   }
 
-  //GET MESSAGE SENT BY DONOR
-  getMessageFromDonor(key: string){
-    const admin = 'd8wP8yc9iQWWMlje0cCQd4vFBJn2';
-    return this.db.list<Message>(`message/${admin}/${key}`);
-  }
-
   //SEND MESSAGE TO ADMIN BY DONOR
-  sendMessageToAdmin(message){
-    const admin = 'd8wP8yc9iQWWMlje0cCQd4vFBJn2';
+  sendMessage(message, donor){
     this.user = this.afAuth.auth.currentUser.uid;
-    const messageAdmin = this.db.list<Message>(`message/${admin}/${this.user}`);
+    let messageAdmin = this.db.list<Message>(`message/${donor}`);
     return messageAdmin.push( message);
   }
 
-  //SEND MESSAGE TO DONOR BY ADMIN
-  sendMessageToDonor(donorKey: string, message: Message){
-    this.user = this.afAuth.auth.currentUser.uid;
-    const messageDonor = this.db.list<Message>(`message/${donorKey}/${this.user}`);
-    return messageDonor.push( message);
-  }
-
   //GET MESSAGE SENT BY ADMIN
-  getMessageFromAdmin(key:string){
-    const admin = 'd8wP8yc9iQWWMlje0cCQd4vFBJn2';
-    return this.db.list<Message>(`message/${key}/${admin}`);
+  getMessages(key:string){
+    return this.db.list<Message>(`message/${key}`);
   }
 }

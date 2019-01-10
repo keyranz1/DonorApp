@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 import {
   AlertController,
   IonicPage,
@@ -7,11 +7,11 @@ import {
   NavParams,
   ToastController
 } from 'ionic-angular';
-import { SessionManager } from "../../../providers/service/session-manager";
-import { FirebaseServiceProvider } from "../../../providers/service/firebase-service-provider";
-import { Donor } from "../../../types/donor";
-import { CallNumber } from "@ionic-native/call-number";
-import { SMS } from "@ionic-native/sms";
+import {SessionManager} from "../../../providers/service/session-manager";
+import {FirebaseServiceProvider} from "../../../providers/service/firebase-service-provider";
+import {Donor} from "../../../types/donor";
+import {CallNumber} from "@ionic-native/call-number";
+import {SMS} from "@ionic-native/sms";
 import {User} from "../../../types/user";
 import {AngularFireAuth} from "angularfire2/auth";
 import {UserLoginPageModule} from "../../user-login/user-login.module";
@@ -33,6 +33,7 @@ export class DonorInfoPage {
     address: '',
     phoneNumber: '',
     note: '',
+    isAdmin: false
   };
   currentUser: any;
 
@@ -50,7 +51,7 @@ export class DonorInfoPage {
     });
 
     loader.present()
-      .then(()=>{
+      .then(() => {
         this.firebaseService
           .getDonorList() // Gives DB LIst
           .snapshotChanges() // Gives Key and Value
@@ -65,7 +66,7 @@ export class DonorInfoPage {
           })
         })
       })
-      .then(()=>{
+      .then(() => {
         loader.dismissAll();
       })
   }
@@ -84,8 +85,8 @@ export class DonorInfoPage {
     });
 
     let alerter = this.alertCtrl.create({
-      title: 'Delete Donor',
-      subTitle: 'You are about to delete the current donor info.',
+      title: 'Delete Profile',
+      subTitle: 'You are about to delete your profile.',
       message: 'Are you sure you want to continue?',
       buttons: [{
         text: 'No',
@@ -95,6 +96,10 @@ export class DonorInfoPage {
         handler: () => {
           loader.present()
             .then(() => this.firebaseService.deleteDonor(this.donor))
+            .then(() => {
+              const user = this.fauth.auth.currentUser;
+              user.delete();
+            })
             .then(() => {
               this.navCtrl.setRoot('DonorListPage')
                 .then(() => loader.dismiss())
@@ -139,7 +144,7 @@ export class DonorInfoPage {
       .catch(() => alerter.present());
   }
 
-  logOut(){
+  logOut() {
     this.navCtrl.setRoot('UserLoginPage');
   }
 }

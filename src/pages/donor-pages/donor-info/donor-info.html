@@ -1,13 +1,16 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title text-center>{{donor.name}}</ion-title>
+    <button ion-button float-left menuToggle>
+      <ion-icon name="ios-menu"></ion-icon>
+    </button>
+    <ion-title text-center>Profile</ion-title>
 
-    <ion-buttons right>
-      <button ion-button icon-only (click)="logOut()">
-        <ion-icon name='log-out'></ion-icon>
-      </button>
-    </ion-buttons>
+    <!--<ion-buttons right>-->
+      <!--<button ion-button icon-only (click)="logOut()">-->
+        <!--<ion-icon name='log-out'></ion-icon>-->
+      <!--</button>-->
+    <!--</ion-buttons>-->
   </ion-navbar>
 
 </ion-header>
@@ -37,7 +40,7 @@
 
   <ion-card>
     <ion-card-header text-center>
-      Donor Info:
+      DONOR INFO:
     </ion-card-header>
     <ion-card-content>
       <ion-item>
@@ -66,8 +69,8 @@
   <!--<button ion-button block navPush="MessagesPage" [navParams]="donor">Chat</button>-->
   <ion-grid>
     <ion-row>
-      <button ion-button color="chat" block full navPush="MessageForDonorPage" [navParams]="{donor:donor}">
-        <ion-icon name="app-chat"></ion-icon> Chat with Admin
+      <button ion-button color="chat" block full navPush="MessagesPage" [navParams]="{donor:donor}">
+         Chat
       </button>
     </ion-row>
   </ion-grid>
