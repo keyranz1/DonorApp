@@ -18,11 +18,12 @@
     "@angular/core": "5.2.11",
     "@angular/forms": "5.2.11",
     "@angular/http": "5.2.11",
-    "@angular/platform-browser": "5.2.11",
+    "@angular/platform-browser": "^5.2.11",
     "@angular/platform-browser-dynamic": "5.2.11",
     "@ionic-native/call-number": "^4.16.0",
     "@ionic-native/core": "~4.9.2",
     "@ionic-native/firebase": "^4.11.0",
+    "@ionic-native/onesignal": "^4.19.0",
     "@ionic-native/sms": "^4.10.1",
     "@ionic-native/splash-screen": "~4.9.2",
     "@ionic-native/status-bar": "~4.9.2",
@@ -62,7 +63,8 @@
       "cordova-plugin-splashscreen": {},
       "cordova-plugin-ionic-webview": {},
       "cordova-plugin-ionic-keyboard": {},
-      "call-number": {}
+      "call-number": {},
+      "onesignal-cordova-plugin": {}
     },
     "platforms": [
       "android",

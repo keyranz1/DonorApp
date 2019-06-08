@@ -64,7 +64,6 @@ export class UserLoginPage {
       duration: 3000,
       dismissOnPageChange: true
     });
-
     this.fireauth.auth.signInWithEmailAndPassword(this.user.email,this.user.password)
       .then((res) => {
         this.sessionManager.setCurrentUser(this.user);
@@ -74,7 +73,7 @@ export class UserLoginPage {
           }
           else{
             toaster.setMessage("Please verify your email address");
-            toaster.present();
+            return toaster.present();
           }
       })
     })

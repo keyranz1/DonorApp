@@ -76,7 +76,6 @@ export class SideMenuComponent {
     let loader = this.loadCtrl.create({
       content: "logging out",
       duration: 10000,
-      dismissOnPageChange: false
     });
 
     loader.present()

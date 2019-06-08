@@ -46,9 +46,12 @@ export class DonorInfoPage {
       this.navCtrl.setRoot("UserLoginPage");
     }
 
+
+  }
+
+  ionViewWillLoad() {
     let loader = this.loadCtrl.create({
       duration: 10000,
-      dismissOnPageChange: true
     });
 
     loader.present()
@@ -68,13 +71,7 @@ export class DonorInfoPage {
           })
         })
       })
-      .then(() => {
-        loader.dismissAll();
-      })
-  }
-
-  ionViewWillLoad() {
-
+      .then(() => loader.dismiss())
   }
 
 

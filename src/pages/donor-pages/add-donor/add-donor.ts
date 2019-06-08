@@ -32,6 +32,7 @@ export class AddDonorPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private listService: FirebaseServiceProvider,
               private toastCtrl: ToastController, private sessionManager: SessionManager, private db: AngularFireAuth) {
+
   }
 
   ionViewDidLoad() {

@@ -13,7 +13,7 @@ export class AdminLoginPage {
   tap = 0;
   user = {
     email: "kiran.yadubanshi@selu.edu",
-    password: "",
+    password: "Loveuu123",
     // password: "Loveuu123"
     displayName: "Morang"
   } as User;
@@ -40,12 +40,12 @@ export class AdminLoginPage {
     // console.log(this.afAuth.auth.currentUser);
     return loader.present()
       .then(() => this.afAuth.auth.signInWithEmailAndPassword(user.email, user.password))
+      .then(() => loader.dismiss())
       .then(() => {
         this.sessionManager.setCurrentUser(this.user);
         // console.log(this.afAuth.auth.currentUser);
         return this.navCtrl.setRoot("DonorListPage")
       })
-      .then(() => loader.dismiss())
       .catch((error) => {
         console.log(error);
         loader.dismiss()

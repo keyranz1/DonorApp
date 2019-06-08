@@ -17,6 +17,7 @@ import { CallNumber } from "@ionic-native/call-number";
 import { SMS } from "@ionic-native/sms";
 import { DirectivesModule } from "../directives/directives.module";
 import { Firebase } from "@ionic-native/firebase";
+import {OneSignal} from "@ionic-native/onesignal";
 
 
 @NgModule({
@@ -46,7 +47,8 @@ import { Firebase } from "@ionic-native/firebase";
     SessionManager,
     CallNumber,
     Firebase,
-    SMS
+    SMS,
+    OneSignal
   ]
 })
 export class AppModule {

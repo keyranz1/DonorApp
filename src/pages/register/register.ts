@@ -1,7 +1,5 @@
 import { Component } from '@angular/core';
 import {IonicPage, NavController, NavParams, ToastController} from 'ionic-angular';
-import {Donor} from "../../types/donor";
-import {AngularFireDatabase} from "angularfire2/database";
 import {AngularFireAuth} from "angularfire2/auth";
 
 /**
@@ -17,31 +15,23 @@ import {AngularFireAuth} from "angularfire2/auth";
   templateUrl: 'register.html',
 })
 export class RegisterPage {
-
-
-
   email: string = '';
   password: string = '';
   confirmPassword: string = '';
-
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private db: AngularFireAuth, private toastCtrl: ToastController) {
   }
 
   ionViewDidLoad() {
-
   }
 
   registerDonor() {
-
-
     let toaster = this.toastCtrl.create({
       duration: 3000,
       position: 'bottom'
     });
-
         this.db.auth.createUserWithEmailAndPassword(this.email,this.password)
-          .then((userData)=>{
+          .then((userData) => {
             console.log(userData.uid);
             this.db.app.auth().currentUser.sendEmailVerification();
              this.db.auth.signInWithEmailAndPassword(this.email,this.password)
